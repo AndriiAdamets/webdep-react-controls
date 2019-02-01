@@ -1,0 +1,21 @@
+// ======== colors ========
+$color-primary: #007bff !default;
+$color-secondary: #6c757d !default;
+$color-success: #28a745 !default;
+$color-danger: #dc3545 !default;
+$color-warning: #ffc107 !default;
+$color-info: #17a2b8 !default;
+$color-light: #f8f9fa !default;
+$color-dark: #343a40 !default;
+$link-color: $color-primary !default;
+$button-text-color: $color-light !default;
+$button-text-color-alternative: $color-dark !default;
+// ======= /colors ========
+
+// ======== padding ========
+$button-padding-top: 6px !default;
+$button-padding-right: 12px !default;
+$button-padding-bottom: 6px !default;
+$button-padding-left: 12px !default;
+$button-padding: $button-padding-top $button-padding-right $button-padding-bottom $button-padding-left !default;
+// ======= /padding ========
