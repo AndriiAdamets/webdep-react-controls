@@ -6,8 +6,18 @@
   "repository": "git@github.com:AndriiAdamets/react-controls.git",
   "author": "Andrii Adamets <andrey.adamets@gmail.com>",
   "scripts": {
+    "start": "gulp scripts",
+    "dev": "gulp dev",
     "build": "./node_modules/.bin/webpack --mode=production",
-    "test": "jest"
+    "test": "jest",
+    "doc:build": "styleguidist build",
+    "doc:server": "styleguidist server"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    }
   },
   "license": "MIT",
   "dependencies": {
@@ -27,7 +37,14 @@
     "babel-preset-react": "^6.24.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.8.0",
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-util": "^3.0.8",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
+    "node-notifier": "^5.3.0",
+    "node-sass": "^4.11.0",
+    "react-styleguidist": "^8.0.6",
     "react-test-renderer": "^16.7.0",
     "regenerator-runtime": "^0.13.1",
     "webpack": "^4.29.0",

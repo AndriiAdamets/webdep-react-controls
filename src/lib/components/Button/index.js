@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-
 function getButtonClassNames(props, defaultClassName = 'rc-button') {
   return classnames(
       defaultClassName,
@@ -14,7 +13,11 @@ function getButtonClassNames(props, defaultClassName = 'rc-button') {
     );
 }
 
+/**
+ * Button wrapper class
+ */
 const Button = forwardRef((props, ref) => {
+
   if(props.type === 'label') {
     return (
       <span ref={ref} className={getButtonClassNames(props)}>{props.children}</span>
@@ -24,11 +27,11 @@ const Button = forwardRef((props, ref) => {
   else if (props.type === 'link') {
     const {type, state, ...linkProps} = props;
     return (
-      <a ref={ref}  {...linkProps } className={getButtonClassNames(props)} />
+      <a ref={ref} role="link" {...linkProps } className={getButtonClassNames(props)} />
     );
   }
-
-  return (<button ref={ref} {...props} className={getButtonClassNames(props)} />);
+  const { state, ...buttonProps } = props;
+  return (<button role="button" ref={ref} {...buttonProps} className={getButtonClassNames(props)} />);
 })
 
 Button.propTypes = {
@@ -48,4 +51,4 @@ Button.defaultProps = {
   size: 'medium',
 }
 
-export { Button };
+export default Button;

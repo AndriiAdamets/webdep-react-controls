@@ -1,0 +1,100 @@
+@import './variables';
+
+@mixin button($bgcolor, $textcolor) {
+  background-color: $bgcolor;
+  color: $textcolor;
+  &:hover {
+    background-color: darken($bgcolor, 5%);
+  }
+}
+
+.rc-button {
+  font-size: 1rem;
+  background-color: #000;
+  padding: $button-padding;
+  outline: 0;
+  &, &:hover {
+    text-decoration: none;
+  }
+}
+
+.rc-button--primary {
+  @include button($color-primary, $button-text-color);
+}
+.rc-button--secondary {
+  @include button($color-secondary, $button-text-color);
+}
+.rc-button--success {
+  @include button($color-success, $button-text-color);
+}
+.rc-button--danger {
+  @include button($color-danger, $button-text-color);
+}
+.rc-button--warning {
+  @include button($color-warning, $button-text-color);
+}
+.rc-button--info {
+  @include button($color-info, $button-text-color);
+}
+.rc-button--light {
+  @include button($color-light, $button-text-color-alternative);
+}
+.rc-button--dark {
+  @include button($color-dark, $button-text-color);
+}
+.rc-button--link {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  text-decoration: 0;
+  color: $link-color;
+  &:hover {
+    color: darken($link-color, 20%);
+  }
+}
+
+.rc-button--primary.rc-button--disabled {
+  &, &:hover {
+    background-color: lighten($color-primary, 20%);
+  }
+}
+.rc-button--secondary.rc-button--disabled {
+  &, &:hover {
+    background-color: lighten($color-secondary, 20%);
+  }
+}
+.rc-button--success.rc-button--disabled {
+  &, &:hover {
+    background-color: lighten($color-success, 20%);
+  }
+}
+.rc-button--danger.rc-button--disabled {
+  &, &:hover {
+    background-color: lighten($color-danger, 20%);
+  }
+}
+.rc-button--warning.rc-button--disabled {
+  &, &:hover {
+    background-color: lighten($color-warning, 20%);
+  }
+}
+.rc-button--info.rc-button--disabled {
+  &, &:hover {
+    background-color: lighten($color-info, 20%);
+  }
+}
+.rc-button--light.rc-button--disabled {
+  &, &:hover {
+    background-color: lighten($color-light, 20%);
+  }
+}
+.rc-button--dark.rc-button--disabled {
+  &, &:hover {
+    background-color: lighten($color-dark, 20%);
+  }
+}
+.rc-button--link.rc-button--disabled {
+  &, &:hover {
+    color: lighten($link-color, 20%);
+  }
+}
