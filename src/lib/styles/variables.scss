@@ -1,6 +1,4 @@
 // ======== colors ========
-$hover-darken-percentage: 5%;
-$disabled-lighten-percentage: 5%;
 $color-primary: #007bff !default;
 $color-secondary: #6c757d !default;
 $color-success: #28a745 !default;
@@ -9,37 +7,16 @@ $color-warning: #ffc107 !default;
 $color-info: #17a2b8 !default;
 $color-light: #f8f9fa !default;
 $color-dark: #343a40 !default;
+$color-black: #212529 !default;
 // ======= /colors ========
 
 // ======== buttons ========
-$button-border-radius: 4px !default;
-$button-border-width: 1px;
-$button-border-style: solid;
+
 // ==== colors ====
 // === Hover colors ===
-$color-primary-hover: darken($color-primary, $hover-darken-percentage) !default;
-$color-secondary-hover: darken(#6c757d, $hover-darken-percentage) !default;
-$color-success-hover: darken(#28a745, $hover-darken-percentage) !default;
-$color-danger-hover: darken(#dc3545, $hover-darken-percentage) !default;
-$color-warning-hover: darken(#ffc107, $hover-darken-percentage) !default;
-$color-info-hover: darken(#17a2b8, $hover-darken-percentage) !default;
-$color-light-hover: darken(#f8f9fa, $hover-darken-percentage) !default;
-$color-dark-hover: darken(#343a40, $hover-darken-percentage) !default;
-$link-color-hover: $color-primary-hover !default;
 // == /Hover colors ===
 // === Disabled colors ===
-$color-primary-disabled: lighten($color-primary, $disabled-lighten-percentage) !default;
-$color-secondary-disabled: lighten(#6c757d, $disabled-lighten-percentage) !default;
-$color-success-disabled: lighten(#28a745, $disabled-lighten-percentage) !default;
-$color-danger-disabled: lighten(#dc3545, $disabled-lighten-percentage) !default;
-$color-warning-disabled: lighten(#ffc107, $disabled-lighten-percentage) !default;
-$color-info-disabled: lighten(#17a2b8, $disabled-lighten-percentage) !default;
-$color-light-disabled: lighten(#f8f9fa, $disabled-lighten-percentage) !default;
-$color-dark-disabled: lighten(#343a40, $disabled-lighten-percentage) !default;
-$link-color-disabled: $color-primary-disabled !default;
 // == /Disabled colors ===
-$link-color: $color-primary !default;
-$link-color-hover: $color-primary-hover !default;
 $button-text-color: $color-light !default;
 $button-text-color-alternative: $color-dark !default;
 // === /colors ====
