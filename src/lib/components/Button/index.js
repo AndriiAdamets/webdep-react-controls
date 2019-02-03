@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-function getButtonClassNames(props, defaultClassName = 'rc-button') {
+function getButtonClassNames(props, defaultClassName = 'wrc-button') {
   return classnames(
       defaultClassName,
       `${defaultClassName}--${props.state}`,
-      `${defaultClassName}--${props.size}`,
       {
+        [`${defaultClassName}--${props.size}`]: props.state !== 'link',
         [`${defaultClassName}--disabled`]: !!props.disabled
       },
       props.className,

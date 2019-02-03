@@ -1,92 +1,70 @@
 @import './variables';
+$btn-darken-percentage: 5% !default;
+$btn-lighten-percentage: 10% !default;
+$button-border-radius: 4px;
+$button-border-style: solid;
+$button-border-width: 1px;
+$button-states: ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark');
+$button-colors: (
+  primary: $color-primary,
+  secondary: $color-secondary,
+  success: $color-success,
+  danger: $color-danger,
+  warning: $color-warning,
+  info: $color-info,
+  light: $color-light,
+  dark: $color-dark,
+);
 
-.rc-button {
+
+$link-color: $color-primary !default;
+$link-color-hover: darken($color-primary, $btn-darken-percentage) !default;
+$link-color-disabled: lighten($color-primary, $btn-lighten-percentage) !default;
+
+@mixin button-state($state) {
+  .wrc-button--#{$state} {
+    @if($state == 'light') {
+      color: $color-black;
+    } @else {
+      color: #fff;
+    }
+    background-color: map-get($button-colors, $state);
+    border-color: map-get($button-colors, $state);
+    &:hover {
+      background-color: darken(map-get($button-colors, $state), $btn-darken-percentage);
+      border-color: darken(map-get($button-colors, $state), $btn-darken-percentage);
+    }
+  }
+  .wrc-button--#{$state}.wrc-button--disabled {
+    &,
+    &:hover {
+      background-color: lighten(map-get($button-colors, $state), $btn-lighten-percentage);
+      border-color: lighten(map-get($button-colors, $state), $btn-lighten-percentage);
+    }
+  }
+}
+
+.wrc-button {
   font-family: system-ui;
+  display: inline-block;
+  white-space: pre;
   font-size: 1rem;
-  background-color: #000;
   outline: 0;
+  color: #fff;
   border-radius: $button-border-radius;
   border-style: $button-border-style;
+  border-width: $button-border-width;
   &, &:hover {
     text-decoration: none;
   }
 }
-// === colors ===
-.rc-button--primary {
-  background-color: $color-primary;
-  border-color: $color-primary;
-  color: $button-text-color;
-  &:hover {
-    background-color: $color-primary-hover;
-    border-color: $color-primary-hover;
-  }
+
+@each $state in $button-states {
+  @include button-state($state);
 }
-.rc-button--secondary {
-  background-color: $color-secondary;
-  border-color: $color-secondary;
-  color: $button-text-color;
-  &:hover {
-    background-color: $color-secondary-hover;
-    border-color: $color-secondary-hover;
-  }
-}
-.rc-button--success {
-  background-color: $color-success;
-  border-color: $color-success;
-  color: $button-text-color;
-  &:hover {
-    background-color: $color-success-hover;
-    border-color: $color-success-hover;
-  }
-}
-.rc-button--danger {
-  background-color: $color-danger;
-  border-color: $color-danger;
-  color: $button-text-color;
-  &:hover {
-    background-color: $color-danger-hover;
-    border-color: $color-danger-hover;
-  }
-}
-.rc-button--warning {
-  background-color: $color-warning;
-  border-color: $color-warning;
-  color: $button-text-color;
-  &:hover {
-    background-color: $color-warning-hover;
-    border-color: $color-warning-hover;
-  }
-}
-.rc-button--info {
-  background-color: $color-info;
-  border-color: $color-info;
-  color: $button-text-color;
-  &:hover {
-    background-color: $color-info-hover;
-    border-color: $color-info-hover;
-  }
-}
-.rc-button--light {
-  background-color: $color-light;
-  border-color: $color-light;
-  color: $button-text-color-alternative;
-  &:hover {
-    background-color: $color-light-hover;
-    border-color: $color-light-hover;
-  }
-}
-.rc-button--dark {
-  background-color: $color-dark;
-  border-color: $color-dark;
-  color: $button-text-color;
-  &:hover {
-    background-color: $color-dark-hover;
-    border-color: $color-dark-hover;
-  }
-}
-.rc-button--link {
+
+.wrc-button--link {
   background-color: transparent;
-  display: inline-block;
   border: 0;
   padding: 0;
   text-decoration: 0;
@@ -95,69 +73,21 @@
     color: $link-color-hover;
   }
 }
-
-.rc-button--primary.rc-button--disabled {
-  &, &:hover {
-    background-color: $color-primary-disabled;
-    border-color: $color-primary-disabled;
-  }
-}
-.rc-button--secondary.rc-button--disabled {
-  &, &:hover {
-    background-color: $color-secondary-disabled;
-    border-color: $color-secondary-disabled;
-  }
-}
-.rc-button--success.rc-button--disabled {
-  &, &:hover {
-    background-color: $color-success-disabled;
-    border-color: $color-success-disabled;
-  }
-}
-.rc-button--danger.rc-button--disabled {
-  &, &:hover {
-    background-color: $color-danger-disabled;
-    border-color: $color-danger-disabled;
-  }
-}
-.rc-button--warning.rc-button--disabled {
-  &, &:hover {
-    background-color: $color-warning-disabled;
-    border-color: $color-warning-disabled;
-  }
-}
-.rc-button--info.rc-button--disabled {
-  &, &:hover {
-    background-color: $color-info-disabled;
-    border-color: $color-info-disabled;
-  }
-}
-.rc-button--light.rc-button--disabled {
-  &, &:hover {
-    background-color: $color-light-disabled;
-    border-color: $color-light-disabled;
-  }
-}
-.rc-button--dark.rc-button--disabled {
-  &, &:hover {
-    background-color: $color-dark-disabled;
-    border-color: $color-dark-disabled;
-  }
-}
-.rc-button--link.rc-button--disabled {
-  &, &:hover {
+.wrc-button--link.wrc-bottom--disabled {
+  &,
+  &:hover {
     color: $link-color-disabled;
   }
 }
-// == /colors ===
+
 // === sizes ===
-.rc-button--small {
+.wrc-button--small {
   padding: $button-small-padding;
 }
-.rc-button--medium {
+.wrc-button--medium {
   padding: $button-medium-padding;
 }
-.rc-button--big {
+.wrc-button--big {
   padding: $button-big-padding;
 }
 // == /sizes ===
