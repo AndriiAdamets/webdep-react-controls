@@ -1,23 +1,23 @@
-# react-controls
+# webdep-react-controls
 React wrappers for form controls
 ## installation
 
 Using npm:
 ```
-npm install react-controls --save
+npm install webdep-react-controls --save
 ```
 
 Using yarn:
 ```
-yarn add react-controls
+yarn add webdep-react-controls
 ```
 
 ## Styles
-You should import styles separately from `react-controls/build/lib/styles.css`, or, if You using `sass` in your project,
-just add `@import "~react-controls/src/lib/styles/styles.scss"`
+You should import styles separately from `webdep-react-controls/build/lib/styles.css`, or, if You using `sass` in your project,
+just add `@import "~webdep-react-controls/src/lib/styles/styles.scss"`
 
 ## Components documentation
-You can find detailed documentation for components in `react-controls/build/docs/index.html`.
+You can find detailed documentation for components in `webdep-react-controls/build/docs/index.html`.
 
 ## Components
 

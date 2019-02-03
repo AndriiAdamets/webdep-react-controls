@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Panel 1`] = `
+<section
+  className="wrc-card"
+>
+  <div
+    className="wrc-card__header"
+  >
+    <h3
+      className="wrc-card__title"
+    >
+      Card Title
+    </h3>
+  </div>
+  <div
+    className="wrc-card__body"
+  >
+    Card Body
+  </div>
+</section>
+`;

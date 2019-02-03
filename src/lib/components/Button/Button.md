@@ -1,6 +1,6 @@
 Button Colors:
 
-```
+```js
 <div>
   <Button>Default button</Button>
   <Button state="secondary">Secondary button</Button>
@@ -15,7 +15,7 @@ Button Colors:
 ```
 Disabled Buttons:
 
-```
+```js
 <div>
   <Button disabled>Default button</Button>
   <Button disabled state="secondary">Secondary button</Button>
@@ -31,7 +31,7 @@ Disabled Buttons:
 
 Button sizes:
 
-```
+```js
 <div>
   <Button size="small">Small button</Button>
   <Button>Default button</Button>
@@ -41,7 +41,7 @@ Button sizes:
 
 Links:
 
-```
+```js
   <div>
     <Button type="link" href="http://google.com">Default Link</Button>
     <Button type="link" href="http://google.com" state="secondary">Secondary Link</Button>
@@ -57,7 +57,7 @@ Links:
 
 Button click handler:
 
-```
+```js
 function handleClick() {
   alert('I am clicked!');
 }

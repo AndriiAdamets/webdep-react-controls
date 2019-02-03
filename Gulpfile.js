@@ -1,4 +1,4 @@
-const { series, parallel, src, pype, dest } = require('gulp');
+const { series, parallel, src, dest, watch } = require('gulp');
 const webpack    = require('webpack');
 const gutil      = require('gulp-util');
 const notifier   = require('node-notifier');
@@ -44,5 +44,16 @@ function styles(cb) {
   cb();
 }
 
+function watchScripts(cb) {
+  watch('./src/lib/**/*.js', scripts);
+  cb();
+}
+
+function watchStyles(cb) {
+  watch('./src/lib/styles/**/*.scss', styles);
+  cb();
+}
+
 exports.build = scripts;
 exports.default = parallel(scripts, styles);
+exports.develop = parallel(watchScripts, watchStyles);
