@@ -8,6 +8,18 @@ $color-info: #17a2b8 !default;
 $color-light: #f8f9fa !default;
 $color-dark: #343a40 !default;
 $color-black: #212529 !default;
+
+$states-list: ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark');
+$colors-list: (
+  primary: $color-primary,
+  secondary: $color-secondary,
+  success: $color-success,
+  danger: $color-danger,
+  warning: $color-warning,
+  info: $color-info,
+  light: $color-light,
+  dark: $color-dark,
+);
 // ======= /colors ========
 
 // ======== buttons ========
