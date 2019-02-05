@@ -1,5 +1,7 @@
+html, body {
+  font-size: 16px; }
+
 .wrc-button {
-  font-family: system-ui;
   display: inline-block;
   white-space: pre;
   font-size: 1rem;

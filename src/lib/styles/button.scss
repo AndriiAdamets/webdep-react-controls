@@ -1,4 +1,5 @@
 @import './variables';
+$btn-font-size: 1rem;
 $btn-darken-percentage: 5% !default;
 $btn-lighten-percentage: 10% !default;
 $button-border-radius: 4px;
@@ -10,10 +11,9 @@ $link-color-hover: darken($color-primary, $btn-darken-percentage) !default;
 $link-color-disabled: lighten($color-primary, $btn-lighten-percentage) !default;
 
 .wrc-button {
-  font-family: system-ui;
   display: inline-block;
   white-space: pre;
-  font-size: 1rem;
+  font-size: $btn-font-size;
   outline: 0;
   color: #fff;
   border-radius: $button-border-radius;
