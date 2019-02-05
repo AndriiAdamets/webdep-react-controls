@@ -1,0 +1,93 @@
+@import './variables';
+
+$tooltip-border-radius: 4px;
+$tooltip-z-index: 1;
+$tooltip-padding: 5px;
+$tooltip-caret-botder: 5px;
+$diractions: ('top', 'right', 'bottom', 'left');
+
+.wrc-tooltip {
+  display: inline-block;
+  &__body {
+    position: absolute;
+    white-space: pre-wrap;
+    border-radius: $tooltip-border-radius;
+    padding: $tooltip-padding;
+    z-index: $tooltip-z-index;
+    &--top {
+      transform: translate(-50%, -100%);
+      margin-top: calc(-2 * #{$tooltip-caret-botder});
+      &:before {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: calc(50% - #{$tooltip-caret-botder});
+        border-left: $tooltip-caret-botder solid transparent;
+        border-right: $tooltip-caret-botder solid transparent;
+        border-top-width: $tooltip-caret-botder;
+        border-top-style: solid;
+      }
+    }
+
+    &--bottom {
+      margin-top: calc(2 * #{$tooltip-caret-botder});
+      transform: translate(-50%, 0);
+      &:before {
+        content: '';
+        position: absolute;
+        top: -$tooltip-caret-botder;
+        left: calc(50% - #{$tooltip-caret-botder});
+        border-left: $tooltip-caret-botder solid transparent;
+        border-right: $tooltip-caret-botder solid transparent;
+        border-bottom-width: $tooltip-caret-botder;
+        border-bottom-style: solid;
+      }
+    }
+
+    &--right {
+      transform: translateY(calc(-100% + #{$tooltip-caret-botder}));
+      margin-left: calc(2 * #{$tooltip-caret-botder});
+      &:before {
+        content: '';
+        position: absolute;
+        top: calc(50% - #{$tooltip-caret-botder});
+        left: -$tooltip-border-radius;
+        border-top: $tooltip-caret-botder solid transparent;
+        border-bottom: $tooltip-caret-botder solid transparent;
+        border-right-width: $tooltip-caret-botder;
+        border-right-style: solid;
+      }
+    }
+
+    &--left {
+      transform: translate(calc(-100% - 2 * #{$tooltip-caret-botder}), calc(-100% + #{$tooltip-caret-botder}));
+      &:before {
+        content: '';
+        position: absolute;
+        top: calc(50% - #{$tooltip-caret-botder});
+        left: 100%;
+        border-top: $tooltip-caret-botder solid transparent;
+        border-bottom: $tooltip-caret-botder solid transparent;
+        border-left-width: $tooltip-caret-botder;
+        border-left-style: solid;
+      }
+    }
+  }
+
+}
+
+@each $state in $states-list {
+  .wrc-tooltip__body--#{$state} {
+    background-color: map-get($colors-list, $state);
+    @if($state == 'light') {
+      color: $color-black;
+    } @else {
+      color: #fff;
+    }
+    @each $direction in $diractions {
+      &.wrc-tooltip__body--#{$direction}:before {
+        border-#{$direction}-color: map-get($colors-list, $state);
+      }
+    }
+  }
+}
