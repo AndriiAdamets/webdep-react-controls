@@ -23,3 +23,14 @@ You can find detailed documentation for components in `webdep-react-controls/bui
 
 ### Button
 Button component is simple wrapper for regular button.
+
+#### Customization
+To customize button styles just write styles from `wrc-button` class, or you can overwrite some sass variables:
+```
+$btn-font-size, $btn-darken-percentage, $btn-lighten-percentage, $button-border-radius, $button-border-style, button-border-width, $link-color, $link-color-hover, $link-color-disabled,
+```
+
+### Card
+
+### Tooltip
+Use tooltips for displaying some addition information, validation messages, e.t.c
