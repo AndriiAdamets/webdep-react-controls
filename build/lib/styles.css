@@ -300,3 +300,10 @@ html, body {
     border-bottom-color: #343a40; }
   .wrc-tooltip__body--dark.wrc-tooltip__body--left:before {
     border-left-color: #343a40; }
+
+.wrc-checkbox {
+  display: inline-flex;
+  align-items: center; }
+  .wrc-checkbox__label {
+    margin-left: 0.2rem;
+    display: inline-block; }

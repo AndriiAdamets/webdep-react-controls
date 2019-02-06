@@ -1,0 +1,10 @@
+@import './variables';
+
+.wrc-checkbox {
+  display: inline-flex;
+  align-items: center;
+  &__label {
+    margin-left: 0.2rem;
+    display: inline-block;
+  }
+}
