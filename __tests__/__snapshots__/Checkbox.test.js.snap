@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Panel 1`] = `
+<label
+  className="wrc-checkbox"
+>
+  <div
+    className="wrc-checkbox__indicator"
+  />
+  <input
+    className="wrc-checkbox"
+    role="checkbox"
+    type="checkbox"
+  />
+  <div
+    className="wrc-checkbox__label"
+  >
+    Checkbox
+  </div>
+</label>
+`;
