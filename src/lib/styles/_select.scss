@@ -1,0 +1,51 @@
+@import './variables';
+@import './mixins';
+
+$select-height: calc(2.25rem + 2px);
+
+.wrc-select {
+  &__trigger {
+    @include like-input();
+    position: relative;
+  }
+
+  &__options {
+    @include dropdown();
+  }
+
+  &__options-list {
+    @include dropdown-options-list();
+  }
+
+  &__option {
+    @include dropdown-option();
+  }
+
+  &__control {
+    @include like-input();
+    display: none;
+    width: 100%;
+    height: $select-height;
+    @media #{$mobile} {
+      display: inline-block;
+    }
+  }
+  &__caret {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateX(-50%);
+    border-top: 5px solid $html-font-color;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+
+  &__placeholder {
+    @include ellipsis();
+    color: $color-grey;
+  }
+
+  &__value {
+    @include ellipsis();
+  }
+}

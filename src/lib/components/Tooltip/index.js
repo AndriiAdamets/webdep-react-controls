@@ -4,6 +4,7 @@ import { createPortal, } from 'react-dom';
 import classnames from 'classnames';
 
 import getPortalContainer from '../../helpers/getPortalContainer';
+import getElementCouplingPoint from '../../helpers/getElementCouplingPoint';
 /**
  * Component add tooltip to its children on hover
  */
@@ -32,26 +33,8 @@ export default class Tooltip extends Component {
     if (!this.trigger) {
       return {};
     }
-    const { position } = this.props;
-    const rect = this.trigger.getBoundingClientRect();
-    let left, top;
-    if (position === 'top') {
-      left = rect.left + rect.width / 2;
-      top = window.scrollY + rect.top;
-    }
-    if (position === 'bottom') {
-      left = rect.left + rect.width / 2;
-      top = window.scrollY + rect.top + rect.height;
-    }
-    if (position === 'right') {
-      left = rect.left + rect.width;
-      top = window.scrollY + rect.top + rect.height;
-    }
-    if (position === 'left') {
-      left = rect.left;
-      top = window.scrollY + rect.top + rect.height;
-    }
-    return { left, top };
+    const {left, top } = getElementCouplingPoint(this.trigger, this.props.position);
+    return { left, top, };
   }
 
   get content() {

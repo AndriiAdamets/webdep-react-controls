@@ -1,4 +1,3 @@
-$html-font-size: 16px !default;
 // ======== colors ========
 $color-primary: #007bff !default;
 $color-secondary: #6c757d !default;
@@ -24,6 +23,8 @@ $colors-list: (
 );
 // ======= /colors ========
 
+$html-font-size: 16px !default;
+$html-font-color: $color-black !default;
 // ======== buttons ========
 
 // ==== colors ====
@@ -62,3 +63,16 @@ $button-big-padding: $button-big-padding-top $button-big-padding-right $button-b
 // === /padding ========
 // ======= /buttons ========
 
+// screen width
+$mobile-screen: 690px;
+$tablet-screen: 995px;
+$desktop-screen: 1440px;
+
+// media queries
+$screen: "only screen";
+$mobile: "only screen and (max-width:#{$mobile-screen})";
+$tablet: "only screen and (min-width:#{$mobile-screen}) and (max-width: #{$tablet-screen})";
+$desktop: "only screen and (min-width:#{$tablet-screen}) and (max-width: #{$desktop-screen})";
+$desktop-large: "only screen and (min-width:#{$desktop-screen})";
+$landscape: "only screen and (orientation: landscape)";
+$portrait: "only screen and (orientation: portrait)";

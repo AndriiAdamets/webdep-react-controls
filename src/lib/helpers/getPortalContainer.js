@@ -1,4 +1,4 @@
-function getPortalContainer(id = 'portal-container') {
+export default function getPortalContainer(id = 'portal-container') {
   let container = document.getElementById(id);
   if(!container) {
     container = document.createElement('div');
@@ -7,5 +7,3 @@ function getPortalContainer(id = 'portal-container') {
   }
   return container;
 }
-
-export default getPortalContainer;
