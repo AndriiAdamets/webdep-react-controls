@@ -1,44 +1,5 @@
-@import './variables';
-$input-line-height: 1.5;
-$input-padding-top: .375rem !default;
-$input-padding-right: .375rem !default;
-$input-padding-bottom: .375rem !default;
-$input-padding-left: .375rem !default;
-$input-padding: $input-padding-top $input-padding-right $input-padding-bottom $input-padding-left !default;
-$input-focus-box-shadow: inset 0 1px 1px rgba(0 ,0, 0, .075), 0 0 8px rgba(102, 175, 233, .6) !default;
-$input-invalid-focus-box-shadow: inset 0 1px 1px rgba(247, 235, 235, 0.075), 0 0 8px rgba(255, 47, 0, 0.6) !default;
-$input-border-width: 1px !default;
-$input-border-radius: 4px !default;
-$input-border-color: $color-grey !default;
-$input-border-focus-color: $color-primary !default;
-$input-border-invalid-color: $color-danger !default;
+@import './mixins';
 
 .wrc-input {
-  line-height: $input-line-height;
-  font-size: 1rem;
-  padding: $input-padding;
-  border-width: $input-border-width;
-  border-style: solid;
-  border-radius: $input-border-radius;
-  border-color: $input-border-color;
-  outline: 0;
-  &:focus {
-    border-color: $input-border-focus-color;
-    box-shadow: $input-focus-box-shadow;
-  }
-  &::placeholder {
-    color: $color-grey;
-  }
-
-  &--invalid {
-    border-color: $input-border-invalid-color;
-    &:focus {
-      border-color: $input-border-invalid-color;
-      box-shadow: $input-invalid-focus-box-shadow;
-    }
-  }
-
-  &--form-control {
-    width: calc(100% - #{$input-padding-left} - #{$input-padding-right} - 2* #{$input-border-width});
-  }
+  @include like-input();
 }
