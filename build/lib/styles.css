@@ -472,3 +472,73 @@ html, body {
     border-right: none;
     border-bottom: 2px solid #ced4da;
     border-left: none; }
+
+.wrc-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center; }
+
+.wrc-dialog {
+  margin-top: 30px; }
+  .wrc-dialog__header {
+    padding: 15px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ced4da; }
+  .wrc-dialog__title {
+    margin: 0;
+    font-weight: 500; }
+  .wrc-dialog__body {
+    padding: 10px 20px;
+    background-color: #fff;
+    overflow: auto;
+    max-height: calc(100vh - 60px - 60px - 70px); }
+    .wrc-dialog__body--form {
+      padding: 10px 0; }
+  .wrc-dialog__footer {
+    padding: 15px 30px;
+    border-top: 1px solid #e2e2e2;
+    background-color: #fff;
+    text-align: right; }
+  .wrc-dialog__button-close {
+    color: #007bff;
+    font-size: 26px;
+    opacity: .4;
+    transition: none; }
+    .wrc-dialog__button-close:hover {
+      opacity: .8; }
+  .wrc-dialog__footer-button:nth-of-type(n+1) {
+    margin-left: 10px; }
+  .wrc-dialog--small {
+    width: 300px; }
+  .wrc-dialog--default {
+    width: 600px; }
+  .wrc-dialog--large {
+    width: 900px; }
+
+.dialog-enter {
+  opacity: 0;
+  margin-top: -30px; }
+
+.dialog-enter-active {
+  margin-top: 0;
+  opacity: 1;
+  transition: all 300ms ease-in; }
+
+.dialog-leave {
+  margin-top: 0;
+  opacity: 1; }
+
+.dialog-leave-active {
+  margin-top: -30px;
+  opacity: 0;
+  transition: all 300ms ease-in; }

@@ -4,6 +4,7 @@ import Tooltip from './components/Tooltip';
 import Checkbox from './components/Checkbox';
 import Input from './components/Input';
 import Table from './components/Table';
+import Dialog from './components/Dialog';
 export {
   Button,
   Card,
@@ -11,4 +12,5 @@ export {
   Checkbox,
   Input,
   Table,
+  Dialog,
 };
