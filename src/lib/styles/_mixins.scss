@@ -33,6 +33,7 @@ $option-focused-color: #fff !default;
 $option-focused-bg: $color-primary !default;
 $option-selected-color: $color-black !default;
 $option-selected-bg: $color-light !default;
+$dropdown-z-index: 1 !default;
 // =====================
 
 @mixin like-input () {
@@ -90,6 +91,7 @@ $option-selected-bg: $color-light !default;
 
 @mixin dropdown () {
   position: absolute;
+  z-index: $dropdown-z-index;
   transform: translateX(-50%);
   background-color: $options-list-background-color;
   border-top-left-radius: $options-list-border-top-left-radius;

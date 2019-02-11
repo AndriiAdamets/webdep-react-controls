@@ -12,10 +12,11 @@ $card-border-radius: 4px !default;
 $card-border-style: solid !default;
 $card-border-width: 1px !default;
 $card-border-color: $color-secondary !default;
+$card-border: $card-border-width $card-border-style $card-border-color !default;
 $card-header-bottom-border: $card-border-width $card-border-style $card-border-color !default;
 // == /Border ===
 .wrc-card {
-  border: $card-border-width $card-border-style $card-border-color;
+  border: $card-border;
   border-radius: $card-border-radius;
   &__header {
     color: $card-header-text-color;

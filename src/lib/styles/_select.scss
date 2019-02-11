@@ -1,8 +1,8 @@
 @import './variables';
 @import './mixins';
 
-$select-height: calc(2.25rem + 2px);
-
+$select-height: calc(2.25rem + 2px) !default;
+$select-background-color: #fff !default;
 .wrc-select {
   &__trigger {
     @include like-input();
@@ -11,6 +11,7 @@ $select-height: calc(2.25rem + 2px);
 
   &__options {
     @include dropdown();
+    background-color: $select-background-color;
   }
 
   &__options-list {

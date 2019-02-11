@@ -64,9 +64,9 @@ $button-big-padding: $button-big-padding-top $button-big-padding-right $button-b
 // ======= /buttons ========
 
 // screen width
-$mobile-screen: 690px;
-$tablet-screen: 995px;
-$desktop-screen: 1440px;
+$mobile-screen: 690px !default;
+$tablet-screen: 995px !default;
+$desktop-screen: 1440px !default;
 
 // media queries
 $screen: "only screen";
