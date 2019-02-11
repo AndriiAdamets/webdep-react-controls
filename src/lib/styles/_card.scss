@@ -1,18 +1,18 @@
 @import './variables';
 
-$card-title-font-size: 1.4rem;
-$card-header-background-color: #fff;
-$card-header-text-color: $color-dark;
-$card-body-background-color: #fff;
-$card-body-text-color: $color-dark;
-$card-header-padding: 5px 10px;
-$card-body-padding: 10px;
+$card-title-font-size: 1.4rem !default;
+$card-header-background-color: #fff !default;
+$card-header-text-color: $color-dark !default;
+$card-body-background-color: #fff !default;
+$card-body-text-color: $color-dark !default;
+$card-header-padding: 5px 10px !default;
+$card-body-padding: 10px !default;
 // === Border ===
-$card-border-radius: 4px;
-$card-border-style: solid;
-$card-border-width: 1px;
-$card-border-color: $color-secondary;
-$card-header-bottom-border: $card-border-width $card-border-style $card-border-color;
+$card-border-radius: 4px !default;
+$card-border-style: solid !default;
+$card-border-width: 1px !default;
+$card-border-color: $color-secondary !default;
+$card-header-bottom-border: $card-border-width $card-border-style $card-border-color !default;
 // == /Border ===
 .wrc-card {
   border: $card-border-width $card-border-style $card-border-color;
