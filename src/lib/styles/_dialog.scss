@@ -1,0 +1,106 @@
+@import './variables';
+
+$dialog-header-border-bottom: 1px solid $color-grey !default;
+$dialog-footer-border-top: 1px solid $color-grey !default;
+$dialog-header-background: #fff !default;
+$dialog-body-background: #fff !default;
+$dialog-footer-background: #fff !default;
+
+
+.wrc-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.wrc-dialog {
+  margin-top: 30px;
+
+  &__header {
+    padding: 15px;
+    background-color: $dialog-header-background;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: $dialog-header-border-bottom;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  &__body {
+    padding: 10px 20px;
+    background-color: $dialog-body-background;
+    overflow: auto;
+    max-height: calc(100vh - 60px - 60px - 70px);
+    &--form {
+      padding: 10px 0;
+    }
+  }
+
+  &__footer {
+    padding: 15px 30px;
+    border-top: 1px solid #e2e2e2;
+    background-color: $dialog-footer-background;
+    text-align: right;
+  }
+
+  &__button-close {
+    color: $color-primary;
+    font-size: 26px;
+    opacity: .4;
+    transition: none;
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  &__footer-button {
+    &:nth-of-type(n+1) {
+      margin-left: 10px;
+    }
+  }
+
+  &--small {
+    width: 300px;
+  }
+
+  &--default {
+    width: 600px;
+  }
+
+  &--large {
+    width: 900px;
+  }
+}
+
+.dialog-enter {
+  opacity: 0;
+  margin-top: -30px;
+}
+
+.dialog-enter-active {
+  margin-top: 0;
+  opacity: 1;
+  transition: all 300ms ease-in;
+}
+
+.dialog-leave {
+  margin-top: 0;
+  opacity: 1;
+}
+
+.dialog-leave-active {
+  margin-top: -30px;
+  opacity: 0;
+  transition: all 300ms ease-in;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { Checkbox } from '../src/lib';
 
-test('Panel', () => {
+test('Checkbox', () => {
   const component = renderer.create(
     <Checkbox label="Checkbox" />
   );
