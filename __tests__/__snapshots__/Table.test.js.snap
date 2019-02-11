@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table with componentFn 1`] = `
+<div
+  className="wrc-table"
+>
+  <table
+    className="wrc-table__table wrc-table"
+  >
+    <thead
+      className="wrc-table__header"
+    >
+      <tr>
+        <th
+          className="wrc-table__cell wrc-table__cell--header"
+        >
+          First Name
+        </th>
+        <th
+          className="wrc-table__cell wrc-table__cell--header"
+        >
+          Last Name
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="wrc-table__body"
+    >
+      <tr
+        className="wrc-table__row"
+      >
+        <td
+          className="wrc-table__cell"
+        >
+          John
+        </td>
+        <td
+          className="wrc-table__cell"
+        >
+          <div>
+            <b>
+              Last Name: 
+            </b>
+            Week
+          </div>
+        </td>
+      </tr>
+      <tr
+        className="wrc-table__row"
+      >
+        <td
+          className="wrc-table__cell"
+        >
+          Anton
+        </td>
+        <td
+          className="wrc-table__cell"
+        >
+          <div>
+            <b>
+              Last Name: 
+            </b>
+            Baton
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

@@ -1,0 +1,41 @@
+@import './variables';
+
+$table-font-size: 1rem !default;
+$table-th-border-top: 1px solid $color-grey !default;
+$table-th-border-right: none !default;
+$table-th-border-bottom: 2px solid $color-grey !default;
+$table-th-border-left: none !default;
+$table-cell-padding: .75rem !default;
+$table-text-color: $color-black !default;
+$table-td-border-top: 1px solid $color-grey !default;
+$table-td-border-right: none !default;
+$table-td-border-bottom: none !default;
+$table-td-border-left: none !default;
+$table-th-text-align: left !default;
+$table-td-text-align: left !default;
+
+.wrc-table {
+  &__table {
+    font-size: $table-font-size;
+    min-width: 100%;
+    background-color: transparent;
+    color: $table-text-color;
+    border-collapse: collapse;
+  }
+  &__cell {
+    padding: $table-cell-padding;
+    border-top: $table-td-border-top;
+    border-right: $table-td-border-right;
+    border-bottom: $table-td-border-bottom;
+    border-left: $table-td-border-left;
+    text-align: $table-td-text-align;
+    &--header {
+      vertical-align: bottom;
+      text-align: $table-th-text-align;
+      border-top: $table-th-border-top;
+      border-right: $table-th-border-right;
+      border-bottom: $table-th-border-bottom;
+      border-left: $table-th-border-left;
+    }
+  }
+}
