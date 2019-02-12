@@ -24,6 +24,10 @@ $link-color-disabled: lighten($color-primary, $btn-lighten-percentage) !default;
   }
 }
 
+.wrc-button+.wrc-button:not(:first-child) {
+  margin-left: $buttons-margin-between;
+}
+
 @each $state in $states-list {
   .wrc-button--#{$state} {
     @if($state == 'light') {

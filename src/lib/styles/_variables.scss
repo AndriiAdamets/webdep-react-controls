@@ -40,27 +40,30 @@ $button-text-color-alternative: $color-dark !default;
 // === /border ====
 // ==== padding ====
 // == small ==
-$button-small-padding-top: 4px !default;
-$button-small-padding-right: 8px !default;
-$button-small-padding-bottom: 4px !default;
-$button-small-padding-left: 8px !default;
+$button-small-padding-top: .25rem !default;
+$button-small-padding-right: .5rem !default;
+$button-small-padding-bottom: .25rem !default;
+$button-small-padding-left: .5rem !default;
 $button-small-padding: $button-small-padding-top $button-small-padding-right $button-small-padding-bottom $button-small-padding-left !default;
 // = /small ==
 // == medium ==
-$button-medium-padding-top: 6px !default;
-$button-medium-padding-right: 12px !default;
-$button-medium-padding-bottom: 6px !default;
-$button-medium-padding-left: 12px !default;
+$button-medium-padding-top: .375rem !default;
+$button-medium-padding-right: .75rem !default;
+$button-medium-padding-bottom: .375rem !default;
+$button-medium-padding-left: .75rem !default;
 $button-medium-padding: $button-medium-padding-top $button-medium-padding-right $button-medium-padding-bottom $button-medium-padding-left !default;
 // = /medium ==
 // == big ==
-$button-big-padding-top: 8px !default;
-$button-big-padding-right: 16px !default;
-$button-big-padding-bottom: 8px !default;
-$button-big-padding-left: 16px !default;
+$button-big-padding-top: .5rem !default;
+$button-big-padding-right: 1rem !default;
+$button-big-padding-bottom: .5rem !default;
+$button-big-padding-left: 1rem !default;
 $button-big-padding: $button-big-padding-top $button-big-padding-right $button-big-padding-bottom $button-big-padding-left !default;
 // = /big ==
 // === /padding ========
+// === margin ===
+$buttons-margin-between: 0.5rem !default;
+// == /margin ===
 // ======= /buttons ========
 
 // screen width

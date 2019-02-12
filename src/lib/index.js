@@ -6,6 +6,7 @@ import Input from './components/Input';
 import Select from './components/Select';
 import Table from './components/Table';
 import Dialog from './components/Dialog';
+import Paginator from './components/Paginator';
 export {
   Button,
   Card,
@@ -15,4 +16,5 @@ export {
   Table,
   Dialog,
   Select,
+  Paginator,
 };

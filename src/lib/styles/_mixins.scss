@@ -52,6 +52,8 @@ $dropdown-z-index: 1 !default;
   border-radius: $input-border-radius;
   border-color: $input-border-color;
   outline: 0;
+  width: calc(100% - #{$input-padding-left} - #{$input-padding-right} - 2* #{$input-border-width});
+
   &:focus {
     border-color: $input-border-focus-color;
     box-shadow: $input-focus-box-shadow;
@@ -66,10 +68,6 @@ $dropdown-z-index: 1 !default;
       border-color: $input-border-invalid-color;
       box-shadow: $input-invalid-focus-box-shadow;
     }
-  }
-
-  &--form-control {
-    width: calc(100% - #{$input-padding-left} - #{$input-padding-right} - 2* #{$input-border-width});
   }
 }
 
