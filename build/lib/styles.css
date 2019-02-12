@@ -14,6 +14,9 @@ html, body {
   .wrc-button, .wrc-button:hover {
     text-decoration: none; }
 
+.wrc-button + .wrc-button:not(:first-child) {
+  margin-left: 0.5rem; }
+
 .wrc-button--primary {
   color: #fff;
   background-color: #007bff;
@@ -123,13 +126,13 @@ html, body {
   color: #3395ff; }
 
 .wrc-button--small {
-  padding: 4px 8px 4px 8px; }
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem; }
 
 .wrc-button--medium {
-  padding: 6px 12px 6px 12px; }
+  padding: 0.375rem 0.75rem 0.375rem 0.75rem; }
 
 .wrc-button--big {
-  padding: 8px 16px 8px 16px; }
+  padding: 0.5rem 1rem 0.5rem 1rem; }
 
 .wrc-card {
   border: 1px solid #6c757d;
@@ -320,11 +323,10 @@ html, body {
   line-height: 1.5;
   font-size: 1rem;
   padding: 0.375rem 0.75rem 0.375rem 0.75rem;
-  border-width: 1px;
-  border-style: solid;
   border-radius: 4px;
-  border-color: #ced4da;
-  outline: 0; }
+  border: 1px solid #ced4da;
+  outline: 0;
+  width: calc(100% - 0.75rem - 0.75rem - 2* 1px); }
   .wrc-input:focus {
     border-color: #007bff;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
@@ -335,8 +337,6 @@ html, body {
     .wrc-input--invalid:focus {
       border-color: #dc3545;
       box-shadow: inset 0 1px 1px rgba(247, 235, 235, 0.075), 0 0 8px rgba(255, 47, 0, 0.6); }
-  .wrc-input--form-control {
-    width: calc(100% - 0.75rem - 0.75rem - 2* 1px); }
 
 .wrc-select__trigger {
   font-family: system-ui;
@@ -349,12 +349,13 @@ html, body {
   line-height: 1.5;
   font-size: 1rem;
   padding: 0.375rem 0.75rem 0.375rem 0.75rem;
-  border-width: 1px;
-  border-style: solid;
   border-radius: 4px;
-  border-color: #ced4da;
+  border: 1px solid #ced4da;
   outline: 0;
-  position: relative; }
+  width: calc(100% - 0.75rem - 0.75rem - 2* 1px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
   .wrc-select__trigger:focus {
     border-color: #007bff;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
@@ -365,18 +366,18 @@ html, body {
     .wrc-select__trigger--invalid:focus {
       border-color: #dc3545;
       box-shadow: inset 0 1px 1px rgba(247, 235, 235, 0.075), 0 0 8px rgba(255, 47, 0, 0.6); }
-  .wrc-select__trigger--form-control {
-    width: calc(100% - 0.75rem - 0.75rem - 2* 1px); }
 
 .wrc-select__options {
   position: absolute;
+  z-index: 1;
   transform: translateX(-50%);
   background-color: #fff;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  border: 1px solid #bebebe; }
+  border: 1px solid #bebebe;
+  background-color: #fff; }
 
 .wrc-select__options-list {
   list-style: none;
@@ -405,11 +406,10 @@ html, body {
   line-height: 1.5;
   font-size: 1rem;
   padding: 0.375rem 0.75rem 0.375rem 0.75rem;
-  border-width: 1px;
-  border-style: solid;
   border-radius: 4px;
-  border-color: #ced4da;
+  border: 1px solid #ced4da;
   outline: 0;
+  width: calc(100% - 0.75rem - 0.75rem - 2* 1px);
   display: none;
   width: 100%;
   height: calc(2.25rem + 2px); }
@@ -423,20 +423,21 @@ html, body {
     .wrc-select__control--invalid:focus {
       border-color: #dc3545;
       box-shadow: inset 0 1px 1px rgba(247, 235, 235, 0.075), 0 0 8px rgba(255, 47, 0, 0.6); }
-  .wrc-select__control--form-control {
-    width: calc(100% - 0.75rem - 0.75rem - 2* 1px); }
   @media only screen and (max-width: 690px) {
     .wrc-select__control {
       display: inline-block; } }
 
 .wrc-select__caret {
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  transform: translateX(-50%);
-  border-top: 5px solid #212529;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent; }
+  width: 10px;
+  position: relative;
+  height: 5px; }
+  .wrc-select__caret:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    border-top: 5px solid #212529;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent; }
 
 .wrc-select__placeholder {
   max-width: 100%;
@@ -487,6 +488,12 @@ html, body {
 
 .wrc-dialog {
   margin-top: 30px; }
+  .wrc-dialog *:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px; }
+  .wrc-dialog *:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px; }
   .wrc-dialog__header {
     padding: 15px;
     background-color: #fff;
@@ -542,3 +549,44 @@ html, body {
   margin-top: -30px;
   opacity: 0;
   transition: all 300ms ease-in; }
+
+.wrc-paginator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .wrc-paginator__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+  .wrc-paginator__page-button {
+    padding: 0.375rem 0.75rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #007bff;
+    background-color: #fff; }
+    .wrc-paginator__page-button:hover {
+      cursor: pointer;
+      color: #006fe6;
+      background-color: #ced4da; }
+    .wrc-paginator__page-button--current, .wrc-paginator__page-button--current:hover {
+      cursor: default;
+      color: #fff;
+      background-color: #006fe6; }
+    .wrc-paginator__page-button--disabled, .wrc-paginator__page-button--disabled:hover {
+      cursor: default;
+      color: #ced4da;
+      background-color: #fff; }
+  .wrc-paginator__page-size-setter {
+    padding: 0.25rem;
+    border-radius: 4px;
+    width: 2rem;
+    height: inherit;
+    line-height: inherit; }
+  .wrc-paginator__page-size-setter-container {
+    text-align: left;
+    display: flex;
+    align-items: center; }
+  .wrc-paginator__page-size-label {
+    margin-left: 5px; }
+  .wrc-paginator__page-info {
+    text-align: left; }

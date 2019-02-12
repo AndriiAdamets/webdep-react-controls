@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import SelectOptionsList from './SelectOptionsList';
 import SelectOption from './SelectOption';
 
@@ -18,6 +19,7 @@ export default class Select extends Component {
     options: PropTypes.array,
     nameAccessor: PropTypes.string,
     valueAccessor: PropTypes.string,
+    triggerClassName: PropTypes.string,
     optionsListClassName: PropTypes.string,
   };
 
@@ -75,10 +77,11 @@ export default class Select extends Component {
   handleSelectOption = (value) => {
     let event = new Event('select', { bubbles: true});
     event.simulated = true;
-    this.control.current.value = value.toString();
+    this.control.current.value = value;
     this.control.current.dispatchEvent(event);
     this.close();
     this.trigger.current.focus();
+    this.props.onChange(event);
   };
 
   handleKeyDownClosed = (e) => {
@@ -125,7 +128,16 @@ export default class Select extends Component {
   }
 
   get options() {
-    return this.props.options;
+    if(this.isOptionObject) {
+      return this.props.options;
+    }
+    const { nameAccessor, valueAccessor } = this.props;
+    return this.props.options.map(option => {
+      return {
+        [nameAccessor]: option,
+        [valueAccessor]: option,
+      };
+    });
   };
 
   get displayedOptions() {
@@ -168,11 +180,12 @@ export default class Select extends Component {
   };
 
   render() {
-    const { nameAccessor, valueAccessor, value, onChange } = this.props;
+    const { nameAccessor, valueAccessor, value, onChange, triggerClassName } = this.props;
     const { isOptionsVisible, focusedIndex } = this.state;
     return (
       <div className="wrc-select">
-        <div className="wrc-select__trigger" tabIndex={0} ref={this.trigger} onFocus={this.handleFocus}
+        <div className={classnames('wrc-select__trigger', triggerClassName)}
+          tabIndex={0} ref={this.trigger} onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           onClick={this.handleTriggerClick} >
           {this.triggerContent}
@@ -189,7 +202,7 @@ export default class Select extends Component {
             ))}
           </SelectOptionsList>
         )}
-        <select className="wrc-select__control" value={value} onChange={onChange} ref={this.control}>
+        <select className="wrc-select__control" value={value} onChange={() =>{}} ref={this.control}>
           <option key="empty-item"></option>
           {this.options.map(option => (
             <option key={option[valueAccessor]} value={option[valueAccessor]}>
