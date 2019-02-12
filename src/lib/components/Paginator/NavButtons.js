@@ -10,15 +10,16 @@ class PaginationButton extends Component {
   }
 
   handleClick = () => {
-    this.props.onClick(this.props.pageNum);
+    this.props.onClick({page: this.props.pageNum, size: this.props.size});
   }
 
   render() {
-    const { current, pageNum, children } = this.props;
+    const { current, pageNum, children, disabled } = this.props;
     return (
       <Button state="link" className={classnames('wrc-paginator__page-button', {
-        'wrc-paginator__page-button--current': !!current
-      })} disabled={current}>
+        'wrc-paginator__page-button--current': !!current,
+        'wrc-paginator__page-button--disabled': !current && !!disabled,
+      })} disabled={current || disabled} onClick={this.handleClick}>
         {children || pageNum}
       </Button>
     );
@@ -43,7 +44,7 @@ const NavButtons = (props) => {
     const index = minPage + i;
 
     return (
-      <PaginationButton key={`pagination-button-${index}`}
+      <PaginationButton key={`pagination-button-${index}`} size={size}
         onClick={onChange} current={index === page} pageNum={index} />
     );
   });
@@ -51,14 +52,14 @@ const NavButtons = (props) => {
     <Fragment>
       {!!showSideButtons && (
         <PaginationButton key={`pagination-button-first`}
-          onClick={onChange} current={page === 1} pageNum={1}>
+          onClick={onChange} disabled={page === 1} size={size} pageNum={1}>
           {startButtonContent}
         </PaginationButton>
       )}
       {buttons}
       {!!showSideButtons && (
-        <PaginationButton key={`pagination-button-last`}
-          onClick={onChange} current={page === pagesTotal} pageNum={pagesTotal}>
+        <PaginationButton key={`pagination-button-last`} size={size}
+          onClick={onChange} disabled={page === pagesTotal} pageNum={pagesTotal}>
           {endButtonContent}
         </PaginationButton>
       )}

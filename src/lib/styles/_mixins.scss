@@ -1,40 +1,4 @@
 @import './variables';
-//Input variables
-$input-line-height: 1.5;
-$input-font: system-ui !default;
-$input-font-weight: 400 !default;
-$input-padding-top: .375rem !default;
-$input-padding-right: .75rem !default;
-$input-padding-bottom: .375rem !default;
-$input-padding-left: .75rem !default;
-$input-height: calc(2.25rem + 2px - #{$input-padding-top} - #{$input-padding-bottom}) !default;
-$input-padding: $input-padding-top $input-padding-right $input-padding-bottom $input-padding-left !default;
-$input-focus-box-shadow: inset 0 1px 1px rgba(0 ,0, 0, .075), 0 0 8px rgba(102, 175, 233, .6) !default;
-$input-invalid-focus-box-shadow: inset 0 1px 1px rgba(247, 235, 235, 0.075), 0 0 8px rgba(255, 47, 0, 0.6) !default;
-$input-border-width: 1px !default;
-$input-border-radius: 4px !default;
-$input-border-color: $color-grey !default;
-$input-border-focus-color: $color-primary !default;
-$input-border-invalid-color: $color-danger !default;
-// =====================
-
-// Select variables
-$options-list-background-color: #fff !default;
-$options-list-border-color: #bebebe !default;
-$options-border-width: 1px !default;
-$options-list-border-top-left-radius: 4px !default;
-$options-list-border-top-right-radius: 4px !default;
-$options-list-border-bottom-left-radius: 4px !default;
-$options-list-border-bottom-right-radius: 4px !default;
-$option-padding: 5px 10px !default;
-$option-color: $color-black !default;
-$option-border-bottom: 1px solid $color-grey !default;
-$option-focused-color: #fff !default;
-$option-focused-bg: $color-primary !default;
-$option-selected-color: $color-black !default;
-$option-selected-bg: $color-light !default;
-$dropdown-z-index: 1 !default;
-// =====================
 
 @mixin like-input () {
   font-family: $input-font;
@@ -47,10 +11,11 @@ $dropdown-z-index: 1 !default;
   line-height: $input-line-height;
   font-size: 1rem;
   padding: $input-padding;
-  border-width: $input-border-width;
-  border-style: solid;
+  // border-width: $input-border-width;
+  // border-style: solid;
   border-radius: $input-border-radius;
-  border-color: $input-border-color;
+  // border-color: $input-border-color;
+  border: $input-border;
   outline: 0;
   width: calc(100% - #{$input-padding-left} - #{$input-padding-right} - 2* #{$input-border-width});
 

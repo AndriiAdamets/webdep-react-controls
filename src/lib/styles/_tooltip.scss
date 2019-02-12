@@ -1,10 +1,5 @@
 @import './variables';
 
-$tooltip-border-radius: 4px !default;
-$tooltip-z-index: 1 !default;
-$tooltip-padding: 5px !default;
-$tooltip-caret-botder: 5px !default;
-$diractions: ('top', 'right', 'bottom', 'left');
 
 .wrc-tooltip {
   display: inline-block;
