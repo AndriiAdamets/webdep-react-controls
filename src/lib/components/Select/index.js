@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import Input from '../Input';
 import SelectOptionsList from './SelectOptionsList';
 import SelectOption from './SelectOption';
 
@@ -17,6 +18,8 @@ export default class Select extends Component {
   // TODO: Add tests
   static propTypes = {
     options: PropTypes.array,
+    enableSearch: PropTypes.bool,
+    optionNameFn: PropTypes.func,
     nameAccessor: PropTypes.string,
     valueAccessor: PropTypes.string,
     triggerClassName: PropTypes.string,
@@ -31,6 +34,7 @@ export default class Select extends Component {
 
   state = {
     isOptionsVisible: false,
+    search: '',
   };
 
   constructor(props) {
@@ -50,7 +54,11 @@ export default class Select extends Component {
   };
 
   open = () => {
-    this.setState({ isOptionsVisible: true, focusedIndex: 0, });
+    this.setState({ isOptionsVisible: true, focusedIndex: 0, search: '' }, () => {
+      if(!!this.props.enableSearch) {
+        this.searchInput.current.focus();
+      }
+    });
     document.removeEventListener('click', this.handleDocumentClick);
     document.removeEventListener('keydown', this.handleKeyDownClosed);
     document.addEventListener('keydown', this.hendleKeyDownOpened);
@@ -64,8 +72,10 @@ export default class Select extends Component {
   };
 
   handleDocumentClick = (e) => {
-    document.removeEventListener('click', this.handleDocumentClick);
-    this.close();
+    if(e.target !== this.searchInput.current) {
+      document.removeEventListener('click', this.handleDocumentClick);
+      this.close();
+    }
   }
 
   handleOptionFocus = (value) => {
@@ -81,7 +91,9 @@ export default class Select extends Component {
     this.control.current.dispatchEvent(event);
     this.close();
     this.trigger.current.focus();
-    this.props.onChange(event);
+    if(!!this.props.onChange) {
+      this.props.onChange(event);
+    }
   };
 
   handleKeyDownClosed = (e) => {
@@ -105,10 +117,12 @@ export default class Select extends Component {
       this.setState({focusedIndex: Math.max(focusedIndex - 1, 0)});
     } else if(closeSelectKeys.indexOf(e.key) > -1) {
       this.close();
+      this.trigger.current.focus();
       document.addEventListener('keydown', this.handleKeyDownClosed);
     } else if (selectItemKeys.indexOf(e.key) > -1) {
       this.handleSelectOption(this.displayedOptions[focusedIndex][valueAccessor]);
       this.close();
+      this.trigger.current.focus();
       document.addEventListener('keydown', this.handleKeyDownClosed);
     }
   };
@@ -127,6 +141,8 @@ export default class Select extends Component {
     this.open();
   }
 
+  handleChangeSearch = ({target}) => this.setState({ search: target.value, })
+
   get options() {
     if(this.isOptionObject) {
       return this.props.options;
@@ -141,7 +157,19 @@ export default class Select extends Component {
   };
 
   get displayedOptions() {
-    return this.options;
+    const { nameAccessor, optionNameFn } = this.props;
+    const { search } = this.state;
+    if(!search) {
+      return this.options;
+    }
+    const reg = RegExp(`(^${search})|\\s(${search})`);
+    if(!!optionNameFn) {
+      return this.options.filter(option => {
+        const name = optionNameFn(option);
+        return reg.test(name.toLowerCase());
+      });
+    }
+    return this.options.filter(option => reg.test(option[nameAccessor].toLowerCase()));
   };
 
   get value() {
@@ -149,13 +177,16 @@ export default class Select extends Component {
   };
 
   get selectedOptionName() {
-    const { nameAccessor, valueAccessor, options } = this.props;
+    const { nameAccessor, valueAccessor, options, optionNameFn } = this.props;
     if(!this.isOptionObject) {
       return this.value || ' ';
     }
     const optionIndex = options.findIndex(option => option[valueAccessor] == this.value);
     if(optionIndex === -1) {
       return ' ';
+    }
+    if(!!optionNameFn) {
+      return optionNameFn(options[optionIndex]);
     }
     return options[optionIndex][nameAccessor];
   };
@@ -180,8 +211,8 @@ export default class Select extends Component {
   };
 
   render() {
-    const { nameAccessor, valueAccessor, value, onChange, triggerClassName } = this.props;
-    const { isOptionsVisible, focusedIndex } = this.state;
+    const { nameAccessor, valueAccessor, value, enableSearch, triggerClassName, optionNameFn } = this.props;
+    const { isOptionsVisible, focusedIndex, search } = this.state;
     return (
       <div className="wrc-select">
         <div className={classnames('wrc-select__trigger', triggerClassName)}
@@ -193,11 +224,14 @@ export default class Select extends Component {
         </div>
         {!!isOptionsVisible && (
           <SelectOptionsList style={{...getElementCouplingPoint(this.trigger.current)}} ref={this.optionsList}>
+            {!!enableSearch && (
+              <Input ref={this.searchInput} value={search} onChange={this.handleChangeSearch} />
+            )}
             {this.displayedOptions.map((option, index) => (
               <SelectOption key={option[valueAccessor]} value={option[valueAccessor]}
                 focused={index === focusedIndex} selected={option[valueAccessor] == value}
                 onFocus={this.handleOptionFocus} onSelect={this.handleSelectOption}>
-                {option[nameAccessor]}
+                {optionNameFn ? optionNameFn(option) : option[nameAccessor]}
               </SelectOption>
             ))}
           </SelectOptionsList>
@@ -206,7 +240,7 @@ export default class Select extends Component {
           <option key="empty-item"></option>
           {this.options.map(option => (
             <option key={option[valueAccessor]} value={option[valueAccessor]}>
-              {option[nameAccessor]}
+              {option[nameAccessor] || option[valueAccessor]}
             </option>
           ))}
         </select>
