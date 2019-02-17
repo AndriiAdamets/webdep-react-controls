@@ -7,6 +7,7 @@ import Select from './components/Select';
 import Table from './components/Table';
 import Dialog from './components/Dialog';
 import Paginator from './components/Paginator';
+import DropdownButton from './components/DropdownButton';
 export {
   Button,
   Card,
@@ -17,4 +18,5 @@ export {
   Dialog,
   Select,
   Paginator,
+  DropdownButton,
 };

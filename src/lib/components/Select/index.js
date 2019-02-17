@@ -6,7 +6,6 @@ import SelectOptionsList from './SelectOptionsList';
 import SelectOption from './SelectOption';
 
 import getElementCouplingPoint from '../../helpers/getElementCouplingPoint';
-import isDescendant from '../../helpers/isDescendant';
 
 const openSelectKeys = [' ', 'ArrowUp', 'ArrowDown'];
 const closeSelectKeys = ['Escape'];

@@ -590,3 +590,31 @@ html, body {
     margin-left: 5px; }
   .wrc-paginator__page-info {
     text-align: left; }
+
+.wrc-dropdown-button__options {
+  position: absolute;
+  z-index: 1;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: 1px solid #bebebe;
+  background-color: #fff; }
+
+.wrc-dropdown-button__options-list {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.wrc-dropdown-button__option {
+  padding: 5px 10px; }
+  .wrc-dropdown-button__option:not(:last-of-type) {
+    border-bottom: 1px solid #ced4da; }
+  .wrc-dropdown-button__option--focused {
+    color: #fff;
+    background-color: #007bff; }
+  .wrc-dropdown-button__option--selected {
+    color: #212529;
+    background-color: #f8f9fa; }
