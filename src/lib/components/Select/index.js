@@ -2,11 +2,11 @@ import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Input from '../Input';
+import Caret from '../Caret';
 import SelectOptionsList from './SelectOptionsList';
 import SelectOption from './SelectOption';
 
 import getElementCouplingPoint from '../../helpers/getElementCouplingPoint';
-import isDescendant from '../../helpers/isDescendant';
 
 const openSelectKeys = [' ', 'ArrowUp', 'ArrowDown'];
 const closeSelectKeys = ['Escape'];
@@ -220,7 +220,7 @@ export default class Select extends Component {
           onBlur={this.handleBlur}
           onClick={this.handleTriggerClick} >
           {this.triggerContent}
-          <div className="wrc-select__caret"></div>
+          <Caret />
         </div>
         {!!isOptionsVisible && (
           <SelectOptionsList style={{...getElementCouplingPoint(this.trigger.current)}} ref={this.optionsList}>

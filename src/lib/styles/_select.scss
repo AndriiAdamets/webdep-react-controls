@@ -34,19 +34,6 @@ $select-background-color: #fff !default;
       display: inline-block;
     }
   }
-  &__caret {
-    width: 10px;
-    position: relative;
-    height: 5px;
-    &:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      border-top: 5px solid $html-font-color;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-    }
-  }
 
   &__placeholder {
     @include ellipsis();

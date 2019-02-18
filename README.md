@@ -32,5 +32,15 @@ $btn-font-size, $btn-darken-percentage, $btn-lighten-percentage, $button-border-
 
 ### Card
 
+### Dialog
+
+### Input
+
+### Paginator
+
+### Select
+
+### Table
+
 ### Tooltip
 Use tooltips for displaying some addition information, validation messages, e.t.c

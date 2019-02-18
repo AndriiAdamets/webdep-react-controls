@@ -19,6 +19,8 @@ export default class Dialog extends Component {
     onOpen: PropTypes.func,
     /** Callback for onClose */
     onClose: PropTypes.func,
+    /** Dialog width */
+    size: PropTypes.oneOf(['small', 'default', 'large'])
   }
 
   state = {
