@@ -8,6 +8,7 @@ import Table from './components/Table';
 import Dialog from './components/Dialog';
 import Paginator from './components/Paginator';
 import DropdownButton from './components/DropdownButton';
+import Badge from './components/Badge';
 export {
   Button,
   Card,
@@ -19,4 +20,5 @@ export {
   Select,
   Paginator,
   DropdownButton,
+  Badge,
 };

@@ -1,0 +1,29 @@
+
+@import './variables';
+
+.wrc-badge {
+  display: inline-block;
+  padding: $badge-padding-vertical $badge-padding-horizontal;
+  font-size: $badge-font-size;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: $badge-border-radius;
+  &--pill {
+    padding-right: $badge-pill-padding-horizontal;
+    padding-left: $badge-pill-padding-horizontal;
+    border-radius: 10rem;
+  }
+}
+
+@each $state in $states-list {
+  .wrc-badge--#{$state} {
+    @if($state == 'light') {
+      color: $color-black;
+    } @else {
+      color: #fff;
+    }
+    background-color: map-get($colors-list, $state);
+  }
+}

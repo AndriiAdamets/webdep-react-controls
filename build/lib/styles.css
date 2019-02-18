@@ -427,18 +427,6 @@ html, body {
     .wrc-select__control {
       display: inline-block; } }
 
-.wrc-select__caret {
-  width: 10px;
-  position: relative;
-  height: 5px; }
-  .wrc-select__caret:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    border-top: 5px solid #212529;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent; }
-
 .wrc-select__placeholder {
   max-width: 100%;
   white-space: nowrap;
@@ -618,3 +606,64 @@ html, body {
   .wrc-dropdown-button__option--selected {
     color: #212529;
     background-color: #f8f9fa; }
+
+.wrc-badge {
+  display: inline-block;
+  padding: 0.25rem 0.4rem;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 0.25rem; }
+  .wrc-badge--pill {
+    padding-right: calc(0.4rem * 1.5);
+    padding-left: calc(0.4rem * 1.5);
+    border-radius: 10rem; }
+
+.wrc-badge--primary {
+  color: #fff;
+  background-color: #007bff; }
+
+.wrc-badge--secondary {
+  color: #fff;
+  background-color: #6c757d; }
+
+.wrc-badge--success {
+  color: #fff;
+  background-color: #28a745; }
+
+.wrc-badge--danger {
+  color: #fff;
+  background-color: #dc3545; }
+
+.wrc-badge--warning {
+  color: #fff;
+  background-color: #ffc107; }
+
+.wrc-badge--info {
+  color: #fff;
+  background-color: #17a2b8; }
+
+.wrc-badge--light {
+  color: #212529;
+  background-color: #f8f9fa; }
+
+.wrc-badge--dark {
+  color: #fff;
+  background-color: #343a40; }
+
+.wrc-caret {
+  display: inline-block;
+  width: 10px;
+  position: relative;
+  height: 5px; }
+  .wrc-caret:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    border-top: 5px solid #212529;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent; }
+  .wrc-caret--light:before {
+    border-top: 5px solid #fff; }

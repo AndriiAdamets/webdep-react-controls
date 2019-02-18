@@ -16,7 +16,7 @@ export default class Tooltip extends Component {
     /** Tooltip background color */
     state: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link']),
     /** Tooltip message */
-    body: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    body: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
     bodyStyle: PropTypes.object,
   };
 

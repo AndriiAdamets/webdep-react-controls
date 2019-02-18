@@ -165,6 +165,15 @@ $card-border: $card-border-width $card-border-style $card-border-color !default;
 $card-header-bottom-border: $card-border-width $card-border-style $card-border-color !default;
 // ======= /Card ========
 
+// ======== Badge ========
+$badge-padding-vertical: .25rem !default;
+$badge-padding-horizontal: .4rem !default;
+$badge-pill-padding-horizontal: calc(#{$badge-padding-horizontal} * 1.5) !default;
+$badge-border-radius: .25rem !default;
+$badge-pill-border-radius: 10rem !default;
+$badge-font-size: 75% !default;
+// ======= /Badge ========
+
 // screen width
 $mobile-screen: 690px !default;
 $tablet-screen: 995px !default;
