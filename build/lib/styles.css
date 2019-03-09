@@ -380,20 +380,23 @@ html, body {
   background-color: #fff; }
 
 .wrc-select__options-list {
+  overflow-y: auto;
   list-style: none;
+  position: relative;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  max-height: 250px; }
 
 .wrc-select__option {
   padding: 5px 10px; }
   .wrc-select__option:not(:last-of-type) {
     border-bottom: 1px solid #ced4da; }
-  .wrc-select__option--focused {
-    color: #fff;
-    background-color: #007bff; }
   .wrc-select__option--selected {
     color: #212529;
     background-color: #f8f9fa; }
+  .wrc-select__option--focused {
+    color: #fff;
+    background-color: #007bff; }
 
 .wrc-select__control {
   font-family: system-ui;
@@ -592,7 +595,9 @@ html, body {
   background-color: #fff; }
 
 .wrc-dropdown-button__options-list {
+  overflow-y: auto;
   list-style: none;
+  position: relative;
   margin: 0;
   padding: 0; }
 
@@ -600,12 +605,12 @@ html, body {
   padding: 5px 10px; }
   .wrc-dropdown-button__option:not(:last-of-type) {
     border-bottom: 1px solid #ced4da; }
-  .wrc-dropdown-button__option--focused {
-    color: #fff;
-    background-color: #007bff; }
   .wrc-dropdown-button__option--selected {
     color: #212529;
     background-color: #f8f9fa; }
+  .wrc-dropdown-button__option--focused {
+    color: #fff;
+    background-color: #007bff; }
 
 .wrc-badge {
   display: inline-block;

@@ -19,6 +19,7 @@ $select-background-color: #fff !default;
 
   &__options-list {
     @include dropdown-options-list();
+    max-height: $select-list-max-height;
   }
 
   &__option {

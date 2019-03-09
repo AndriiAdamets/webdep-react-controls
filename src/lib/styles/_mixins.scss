@@ -41,14 +41,15 @@
   &:not(:last-of-type) {
     border-bottom: $option-border-bottom;
   }
-  &--focused {
-    color: $option-focused-color;
-    background-color: $option-focused-bg;
-  }
 
   &--selected {
     color: $option-selected-color;
     background-color: $option-selected-bg;
+  }
+
+  &--focused {
+    color: $option-focused-color;
+    background-color: $option-focused-bg;
   }
 }
 
@@ -65,7 +66,9 @@
 }
 
 @mixin dropdown-options-list () {
+  overflow-y: auto;
   list-style: none;
+  position: relative;
   margin: 0;
   padding: 0;
 }

@@ -1,17 +1,11 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Input from '../Input';
 import Caret from '../Caret';
 import SelectOptionsList from './SelectOptionsList';
-import SelectOption from './SelectOption';
-
-import getElementCouplingPoint from '../../helpers/getElementCouplingPoint';
 
 const openSelectKeys = [' ', 'ArrowUp', 'ArrowDown'];
-const closeSelectKeys = ['Escape'];
 const scrollButtons = [' ', 'ArrowUp', 'ArrowDown'];
-const selectItemKeys = [' ', 'Enter'];
 
 export default class Select extends Component {
   // TODO: Add search
@@ -24,12 +18,22 @@ export default class Select extends Component {
     valueAccessor: PropTypes.string,
     triggerClassName: PropTypes.string,
     optionsListClassName: PropTypes.string,
+    searchFn: PropTypes.func,
   };
 
   static defaultProps = {
     nameAccessor: 'name',
     valueAccessor: 'id',
-    optionsListClassName: 'wrc-select__options-list'
+    optionsListClassName: 'wrc-select__options-list',
+    searchFn: function(search, option, props) {
+      const regexPart = search.toLowerCase();
+      const reg = RegExp(`(^${regexPart})|\\s(${regexPart})`);
+      const { optionNameFn, nameAccessor } = props;
+      if(!!optionNameFn) {
+        return reg.test(optionNameFn(option).toLowerCase());
+      }
+      return reg.test(option[nameAccessor].toLowerCase());
+    }
   };
 
   state = {
@@ -54,35 +58,24 @@ export default class Select extends Component {
   };
 
   open = () => {
-    this.setState({ isOptionsVisible: true, focusedIndex: 0, search: '' }, () => {
-      if(!!this.props.enableSearch) {
-        this.searchInput.current.focus();
-      }
-    });
-    document.removeEventListener('click', this.handleDocumentClick);
-    document.removeEventListener('keydown', this.handleKeyDownClosed);
-    document.addEventListener('keydown', this.hendleKeyDownOpened);
+    this.setState({ isOptionsVisible: true, });
     document.addEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('keydown', this.handleKeyDown);
   };
 
-  close = () => {
-    document.removeEventListener('keydown', this.hendleKeyDownOpened);
+  close = (closedByKey) => {
     document.removeEventListener('click', this.handleDocumentClick);
     this.setState({ isOptionsVisible: false });
+    if(closedByKey) {
+      this.trigger.current.focus();
+    }
   };
 
   handleDocumentClick = (e) => {
     if(e.target !== this.searchInput.current) {
-      document.removeEventListener('click', this.handleDocumentClick);
       this.close();
     }
   }
-
-  handleOptionFocus = (value) => {
-    const { valueAccessor } = this.props;
-    const focusedIndex = this.displayedOptions.findIndex(item => item[valueAccessor] == value);
-    this.setState({ focusedIndex });
-  };
 
   handleSelectOption = (value) => {
     let event = new Event('select', { bubbles: true});
@@ -96,7 +89,7 @@ export default class Select extends Component {
     }
   };
 
-  handleKeyDownClosed = (e) => {
+  handleKeyDown = (e) => {
     if(scrollButtons.indexOf(e.key) > -1) {
       e.preventDefault();
     }
@@ -105,43 +98,18 @@ export default class Select extends Component {
     }
   };
 
-  hendleKeyDownOpened = (e) => {
-    if(scrollButtons.indexOf(e.key) > -1) {
-      e.preventDefault();
-    }
-    const { focusedIndex, } = this.state;
-    const { valueAccessor } = this.props;
-    if(e.key === 'ArrowDown') {
-      this.setState({focusedIndex: Math.min(focusedIndex + 1, this.displayedOptions.length - 1)});
-    } else if(e.key === 'ArrowUp') {
-      this.setState({focusedIndex: Math.max(focusedIndex - 1, 0)});
-    } else if(closeSelectKeys.indexOf(e.key) > -1) {
-      this.close();
-      this.trigger.current.focus();
-      document.addEventListener('keydown', this.handleKeyDownClosed);
-    } else if (selectItemKeys.indexOf(e.key) > -1) {
-      this.handleSelectOption(this.displayedOptions[focusedIndex][valueAccessor]);
-      this.close();
-      this.trigger.current.focus();
-      document.addEventListener('keydown', this.handleKeyDownClosed);
-    }
-  };
-
   handleFocus = (e) => {
-    document.addEventListener('keydown', this.handleKeyDownClosed);
+    document.addEventListener('keydown', this.handleKeyDown);
   };
 
   handleBlur = (e) => {
-    document.removeEventListener('keydown', this.handleKeyDownOpened);
-    document.removeEventListener('keydown', this.handleKeyDownClosed);
+    document.removeEventListener('keydown', this.handleKeyDown);
   }
 
   handleTriggerClick = (e) => {
     e.preventDefault();
     this.open();
   }
-
-  handleChangeSearch = ({target}) => this.setState({ search: target.value, })
 
   get options() {
     if(this.isOptionObject) {
@@ -154,26 +122,6 @@ export default class Select extends Component {
         [valueAccessor]: option,
       };
     });
-  };
-
-  get displayedOptions() {
-    const { nameAccessor, optionNameFn } = this.props;
-    const { search } = this.state;
-    if(!search) {
-      return this.options;
-    }
-    const reg = RegExp(`(^${search})|\\s(${search})`);
-    if(!!optionNameFn) {
-      return this.options.filter(option => {
-        const name = optionNameFn(option);
-        return reg.test(name.toLowerCase());
-      });
-    }
-    return this.options.filter(option => reg.test(option[nameAccessor].toLowerCase()));
-  };
-
-  get value() {
-    return this.control.current ? this.control.current.value : this.props.value;
   };
 
   get selectedOptionName() {
@@ -191,6 +139,10 @@ export default class Select extends Component {
     return options[optionIndex][nameAccessor];
   };
 
+  get value() {
+    return this.control.current ? this.control.current.value : this.props.value;
+  };
+
   get triggerContent() {
     if(this.value === undefined || this.value === '') {
       return (
@@ -205,14 +157,13 @@ export default class Select extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDownOpened);
-    document.removeEventListener('keydown', this.handleKeyDownClosed);
+    document.removeEventListener('keydown', this.handleKeyDown);
     document.removeEventListener('click', this.handleDocumentClick);
   };
 
   render() {
-    const { nameAccessor, valueAccessor, value, enableSearch, triggerClassName, optionNameFn } = this.props;
-    const { isOptionsVisible, focusedIndex, search } = this.state;
+    const { nameAccessor, valueAccessor, value, enableSearch, triggerClassName, optionNameFn, searchFn } = this.props;
+    const { isOptionsVisible,} = this.state;
     return (
       <div className="wrc-select">
         <div className={classnames('wrc-select__trigger', triggerClassName)}
@@ -223,18 +174,13 @@ export default class Select extends Component {
           <Caret />
         </div>
         {!!isOptionsVisible && (
-          <SelectOptionsList style={{...getElementCouplingPoint(this.trigger.current)}} ref={this.optionsList}>
-            {!!enableSearch && (
-              <Input ref={this.searchInput} value={search} onChange={this.handleChangeSearch} />
-            )}
-            {this.displayedOptions.map((option, index) => (
-              <SelectOption key={option[valueAccessor]} value={option[valueAccessor]}
-                focused={index === focusedIndex} selected={option[valueAccessor] == value}
-                onFocus={this.handleOptionFocus} onSelect={this.handleSelectOption}>
-                {optionNameFn ? optionNameFn(option) : option[nameAccessor]}
-              </SelectOption>
-            ))}
-          </SelectOptionsList>
+          <SelectOptionsList {...this.props}
+            onSelect={this.handleSelectOption}
+            searchFn={searchFn}
+            onClose={this.close}
+            anchor={this.trigger.current}
+            value={this.value}
+            ref={this.optionsList} options={this.options} />
         )}
         <select className="wrc-select__control" value={value} onChange={() =>{}} ref={this.control}>
           <option key="empty-item"></option>
