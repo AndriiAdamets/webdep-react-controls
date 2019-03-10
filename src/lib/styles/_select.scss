@@ -1,8 +1,6 @@
 @import './variables';
 @import './mixins';
 
-$select-height: calc(2.25rem + 2px) !default;
-$select-background-color: #fff !default;
 .wrc-select {
   &__trigger {
     @include like-input();

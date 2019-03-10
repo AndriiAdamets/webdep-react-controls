@@ -22,12 +22,23 @@ export default class SelectOptionsList extends OptionsList {
   }
 
   componentDidMount() {
+    const { options, value, valueAccessor, } = this.props;
+    const focusedIndex = Math.max(options.findIndex(option => option[valueAccessor] == value), 0);
     document.addEventListener('keydown', this.handleKeyDown);
     window.addEventListener('resize', this.handleResizeWindow);
-    this.setState({ search: '', focusedIndex: 0, style: {...getElementCouplingPoint(this.props.anchor)}});
+
+    this.setState({
+      search: '',
+      focusedIndex,
+      style: {...getElementCouplingPoint(this.props.anchor)}
+    }, this.scrollToFocusedOption);
     if(!!this.searchInput.current) {
       this.searchInput.current.focus();
     }
+  }
+
+  componentDidUpdate() {
+    this.scrollToFocusedOption();
   }
 
   componentWillUnmount() {
@@ -35,7 +46,7 @@ export default class SelectOptionsList extends OptionsList {
     window.removeEventListener('resize', this.handleResizeWindow);
   }
 
-  handleChangeSearch = ({target}) => this.setState({search: target.value});
+  handleChangeSearch = ({target}) => this.setState({ search: target.value, focusedIndex: 0, });
   handleOptionFocus = (value) => {
     const { valueAccessor } = this.props;
     const focusedIndex = this.displayedOptions.findIndex(item => item[valueAccessor] == value);
@@ -60,6 +71,17 @@ export default class SelectOptionsList extends OptionsList {
   handleResizeWindow = () => {
     const { anchor } = this.props;
     this.setState({style: getElementCouplingPoint(anchor)});
+  }
+
+  scrollToFocusedOption() {
+    const { focusedIndex } = this.state;
+    const list = this.list.current;
+    const focusedOption = list.children[focusedIndex];
+    if(focusedOption.offsetTop < list.scrollTop) {
+      list.scrollTo(0, focusedOption.offsetTop);
+    } else if (focusedOption.offsetTop + focusedOption.offsetHeight > list.scrollTop + list.offsetHeight) {
+      list.scrollTo(0, focusedOption.offsetTop + focusedOption.offsetHeight - list.offsetHeight);
+    }
   }
 
   get displayedOptions() {

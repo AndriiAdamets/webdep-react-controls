@@ -77,10 +77,6 @@ $link-color-disabled: lighten($color-primary, $btn-lighten-percentage) !default;
 
 // ======= /buttons ========
 
-// ======= Options List =======
-$options-list-max-height: 250px !default;
-$select-list-max-height: $options-list-max-height !default;
-// ======/ Options List =======
 //Input variables
 $input-line-height: 1.5;
 $input-font: system-ui !default;
@@ -102,6 +98,10 @@ $input-border-invalid-color: $color-danger !default;
 // =====================
 
 // Select variables
+$options-list-max-height: 250px !default;
+$select-list-max-height: $options-list-max-height !default;
+$select-height: calc(2.25rem + 2px) !default;
+$select-background-color: #fff !default;
 $options-list-background-color: #fff !default;
 $options-list-border-color: #bebebe !default;
 $options-border-width: 1px !default;

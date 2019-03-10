@@ -8,16 +8,23 @@ const openSelectKeys = [' ', 'ArrowUp', 'ArrowDown'];
 const scrollButtons = [' ', 'ArrowUp', 'ArrowDown'];
 
 export default class Select extends Component {
-  // TODO: Add search
   // TODO: Add tests
   static propTypes = {
+    /** Select options list */
     options: PropTypes.array,
+    /** If it is true, then search input will be displayed */
     enableSearch: PropTypes.bool,
+    /** Function to customize displaying select options in options list */
     optionNameFn: PropTypes.func,
+    /** If don't use optionNameFn, nameAccessor shold be key of option Name */
     nameAccessor: PropTypes.string,
+    /** Key, which contain value of option object */
     valueAccessor: PropTypes.string,
+    /** Class name of div, which display select placeholder or selected value */
     triggerClassName: PropTypes.string,
+    /** Class name of item in select options list */
     optionsListClassName: PropTypes.string,
+    /** Function, which get search input value, current option and select props, which should return true if option satisfies the search conditions */
     searchFn: PropTypes.func,
   };
 
