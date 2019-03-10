@@ -1,12 +1,5 @@
 @import './variables';
 
-$dialog-header-border-bottom: 1px solid $color-grey !default;
-$dialog-footer-border-top: 1px solid $color-grey !default;
-$dialog-header-background: #fff !default;
-$dialog-body-background: #fff !default;
-$dialog-footer-background: #fff !default;
-
-
 .wrc-dialog-overlay {
   position: fixed;
   top: 0;
@@ -22,10 +15,20 @@ $dialog-footer-background: #fff !default;
 
 .wrc-dialog {
   margin-top: 30px;
-
+  * {
+    &:first-child {
+      border-top-left-radius: $dialog-border-radius;
+      border-top-right-radius: $dialog-border-radius;
+    }
+    &:last-child {
+      border-bottom-left-radius: $dialog-border-radius;
+      border-bottom-right-radius: $dialog-border-radius;
+    }
+  }
   &__header {
     padding: 15px;
     background-color: $dialog-header-background;
+
     display: flex;
     align-items: center;
     justify-content: space-between;

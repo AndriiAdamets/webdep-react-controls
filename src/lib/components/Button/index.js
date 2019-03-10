@@ -41,7 +41,7 @@ Button.propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'link', 'label']),
   /** responsible for button background */
   state: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link']),
-  /** font size */
+  /** Button size */
   size: PropTypes.oneOf(['small', 'medium', 'big',]),
   /** Click button callback */
   onClick: PropTypes.func

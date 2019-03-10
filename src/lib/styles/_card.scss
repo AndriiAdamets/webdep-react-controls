@@ -1,21 +1,7 @@
 @import './variables';
 
-$card-title-font-size: 1.4rem;
-$card-header-background-color: #fff;
-$card-header-text-color: $color-dark;
-$card-body-background-color: #fff;
-$card-body-text-color: $color-dark;
-$card-header-padding: 5px 10px;
-$card-body-padding: 10px;
-// === Border ===
-$card-border-radius: 4px;
-$card-border-style: solid;
-$card-border-width: 1px;
-$card-border-color: $color-secondary;
-$card-header-bottom-border: $card-border-width $card-border-style $card-border-color;
-// == /Border ===
 .wrc-card {
-  border: $card-border-width $card-border-style $card-border-color;
+  border: $card-border;
   border-radius: $card-border-radius;
   &__header {
     color: $card-header-text-color;

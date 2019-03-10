@@ -1,34 +1,51 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import Caret from '../Caret';
 import SelectOptionsList from './SelectOptionsList';
-import SelectOption from './SelectOption';
-
-import getElementCouplingPoint from '../../helpers/getElementCouplingPoint';
-import isDescendant from '../../helpers/isDescendant';
 
 const openSelectKeys = [' ', 'ArrowUp', 'ArrowDown'];
-const closeSelectKeys = ['Escape'];
 const scrollButtons = [' ', 'ArrowUp', 'ArrowDown'];
-const selectItemKeys = [' ', 'Enter'];
 
 export default class Select extends Component {
-  // TODO: Add search
   // TODO: Add tests
   static propTypes = {
+    /** Select options list */
     options: PropTypes.array,
+    /** If it is true, then search input will be displayed */
+    enableSearch: PropTypes.bool,
+    /** Function to customize displaying select options in options list */
+    optionNameFn: PropTypes.func,
+    /** If don't use optionNameFn, nameAccessor shold be key of option Name */
     nameAccessor: PropTypes.string,
+    /** Key, which contain value of option object */
     valueAccessor: PropTypes.string,
+    /** Class name of div, which display select placeholder or selected value */
+    triggerClassName: PropTypes.string,
+    /** Class name of item in select options list */
     optionsListClassName: PropTypes.string,
+    /** Function, which get search input value, current option and select props, which should return true if option satisfies the search conditions */
+    searchFn: PropTypes.func,
   };
 
   static defaultProps = {
     nameAccessor: 'name',
     valueAccessor: 'id',
-    optionsListClassName: 'wrc-select__options-list'
+    optionsListClassName: 'wrc-select__options-list',
+    searchFn: function(search, option, props) {
+      const regexPart = search.toLowerCase();
+      const reg = RegExp(`(^${regexPart})|\\s(${regexPart})`);
+      const { optionNameFn, nameAccessor } = props;
+      if(!!optionNameFn) {
+        return reg.test(optionNameFn(option).toLowerCase());
+      }
+      return reg.test(option[nameAccessor].toLowerCase());
+    }
   };
 
   state = {
     isOptionsVisible: false,
+    search: '',
   };
 
   constructor(props) {
@@ -48,40 +65,38 @@ export default class Select extends Component {
   };
 
   open = () => {
-    this.setState({ isOptionsVisible: true, focusedIndex: 0, });
-    document.removeEventListener('click', this.handleDocumentClick);
-    document.removeEventListener('keydown', this.handleKeyDownClosed);
-    document.addEventListener('keydown', this.hendleKeyDownOpened);
+    this.setState({ isOptionsVisible: true, });
     document.addEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('keydown', this.handleKeyDown);
   };
 
-  close = () => {
-    document.removeEventListener('keydown', this.hendleKeyDownOpened);
+  close = (closedByKey) => {
     document.removeEventListener('click', this.handleDocumentClick);
     this.setState({ isOptionsVisible: false });
+    if(closedByKey) {
+      this.trigger.current.focus();
+    }
   };
 
   handleDocumentClick = (e) => {
-    document.removeEventListener('click', this.handleDocumentClick);
-    this.close();
+    if(e.target !== this.searchInput.current) {
+      this.close();
+    }
   }
-
-  handleOptionFocus = (value) => {
-    const { valueAccessor } = this.props;
-    const focusedIndex = this.displayedOptions.findIndex(item => item[valueAccessor] == value);
-    this.setState({ focusedIndex });
-  };
 
   handleSelectOption = (value) => {
     let event = new Event('select', { bubbles: true});
     event.simulated = true;
-    this.control.current.value = value.toString();
+    this.control.current.value = value;
     this.control.current.dispatchEvent(event);
     this.close();
     this.trigger.current.focus();
+    if(!!this.props.onChange) {
+      this.props.onChange(event);
+    }
   };
 
-  handleKeyDownClosed = (e) => {
+  handleKeyDown = (e) => {
     if(scrollButtons.indexOf(e.key) > -1) {
       e.preventDefault();
     }
@@ -90,33 +105,12 @@ export default class Select extends Component {
     }
   };
 
-  hendleKeyDownOpened = (e) => {
-    if(scrollButtons.indexOf(e.key) > -1) {
-      e.preventDefault();
-    }
-    const { focusedIndex, } = this.state;
-    const { valueAccessor } = this.props;
-    if(e.key === 'ArrowDown') {
-      this.setState({focusedIndex: Math.min(focusedIndex + 1, this.displayedOptions.length - 1)});
-    } else if(e.key === 'ArrowUp') {
-      this.setState({focusedIndex: Math.max(focusedIndex - 1, 0)});
-    } else if(closeSelectKeys.indexOf(e.key) > -1) {
-      this.close();
-      document.addEventListener('keydown', this.handleKeyDownClosed);
-    } else if (selectItemKeys.indexOf(e.key) > -1) {
-      this.handleSelectOption(this.displayedOptions[focusedIndex][valueAccessor]);
-      this.close();
-      document.addEventListener('keydown', this.handleKeyDownClosed);
-    }
-  };
-
   handleFocus = (e) => {
-    document.addEventListener('keydown', this.handleKeyDownClosed);
+    document.addEventListener('keydown', this.handleKeyDown);
   };
 
   handleBlur = (e) => {
-    document.removeEventListener('keydown', this.handleKeyDownOpened);
-    document.removeEventListener('keydown', this.handleKeyDownClosed);
+    document.removeEventListener('keydown', this.handleKeyDown);
   }
 
   handleTriggerClick = (e) => {
@@ -125,19 +119,20 @@ export default class Select extends Component {
   }
 
   get options() {
-    return this.props.options;
-  };
-
-  get displayedOptions() {
-    return this.options;
-  };
-
-  get value() {
-    return this.control.current ? this.control.current.value : this.props.value;
+    if(this.isOptionObject) {
+      return this.props.options;
+    }
+    const { nameAccessor, valueAccessor } = this.props;
+    return this.props.options.map(option => {
+      return {
+        [nameAccessor]: option,
+        [valueAccessor]: option,
+      };
+    });
   };
 
   get selectedOptionName() {
-    const { nameAccessor, valueAccessor, options } = this.props;
+    const { nameAccessor, valueAccessor, options, optionNameFn } = this.props;
     if(!this.isOptionObject) {
       return this.value || ' ';
     }
@@ -145,7 +140,14 @@ export default class Select extends Component {
     if(optionIndex === -1) {
       return ' ';
     }
+    if(!!optionNameFn) {
+      return optionNameFn(options[optionIndex]);
+    }
     return options[optionIndex][nameAccessor];
+  };
+
+  get value() {
+    return this.control.current ? this.control.current.value : this.props.value;
   };
 
   get triggerContent() {
@@ -162,38 +164,36 @@ export default class Select extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDownOpened);
-    document.removeEventListener('keydown', this.handleKeyDownClosed);
+    document.removeEventListener('keydown', this.handleKeyDown);
     document.removeEventListener('click', this.handleDocumentClick);
   };
 
   render() {
-    const { nameAccessor, valueAccessor, value, onChange } = this.props;
-    const { isOptionsVisible, focusedIndex } = this.state;
+    const { nameAccessor, valueAccessor, value, enableSearch, triggerClassName, optionNameFn, searchFn } = this.props;
+    const { isOptionsVisible,} = this.state;
     return (
       <div className="wrc-select">
-        <div className="wrc-select__trigger" tabIndex={0} ref={this.trigger} onFocus={this.handleFocus}
+        <div className={classnames('wrc-select__trigger', triggerClassName)}
+          tabIndex={0} ref={this.trigger} onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           onClick={this.handleTriggerClick} >
           {this.triggerContent}
-          <div className="wrc-select__caret"></div>
+          <Caret />
         </div>
         {!!isOptionsVisible && (
-          <SelectOptionsList style={{...getElementCouplingPoint(this.trigger.current)}} ref={this.optionsList}>
-            {this.displayedOptions.map((option, index) => (
-              <SelectOption key={option[valueAccessor]} value={option[valueAccessor]}
-                focused={index === focusedIndex} selected={option[valueAccessor] == value}
-                onFocus={this.handleOptionFocus} onSelect={this.handleSelectOption}>
-                {option[nameAccessor]}
-              </SelectOption>
-            ))}
-          </SelectOptionsList>
+          <SelectOptionsList {...this.props}
+            onSelect={this.handleSelectOption}
+            searchFn={searchFn}
+            onClose={this.close}
+            anchor={this.trigger.current}
+            value={this.value}
+            ref={this.optionsList} options={this.options} />
         )}
-        <select className="wrc-select__control" value={value} onChange={onChange} ref={this.control}>
+        <select className="wrc-select__control" value={value} onChange={() =>{}} ref={this.control}>
           <option key="empty-item"></option>
           {this.options.map(option => (
             <option key={option[valueAccessor]} value={option[valueAccessor]}>
-              {option[nameAccessor]}
+              {option[nameAccessor] || option[valueAccessor]}
             </option>
           ))}
         </select>

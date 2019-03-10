@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-export default class ModalContainer extends Component {
+export default class Container extends Component {
   static propTypes = {
     size: PropTypes.oneOf(['small', 'default', 'large'])
   };

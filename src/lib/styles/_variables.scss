@@ -40,33 +40,148 @@ $button-text-color-alternative: $color-dark !default;
 // === /border ====
 // ==== padding ====
 // == small ==
-$button-small-padding-top: 4px !default;
-$button-small-padding-right: 8px !default;
-$button-small-padding-bottom: 4px !default;
-$button-small-padding-left: 8px !default;
+$button-small-padding-top: .25rem !default;
+$button-small-padding-right: .5rem !default;
+$button-small-padding-bottom: .25rem !default;
+$button-small-padding-left: .5rem !default;
 $button-small-padding: $button-small-padding-top $button-small-padding-right $button-small-padding-bottom $button-small-padding-left !default;
 // = /small ==
 // == medium ==
-$button-medium-padding-top: 6px !default;
-$button-medium-padding-right: 12px !default;
-$button-medium-padding-bottom: 6px !default;
-$button-medium-padding-left: 12px !default;
+$button-medium-padding-top: .375rem !default;
+$button-medium-padding-right: .75rem !default;
+$button-medium-padding-bottom: .375rem !default;
+$button-medium-padding-left: .75rem !default;
 $button-medium-padding: $button-medium-padding-top $button-medium-padding-right $button-medium-padding-bottom $button-medium-padding-left !default;
 // = /medium ==
 // == big ==
-$button-big-padding-top: 8px !default;
-$button-big-padding-right: 16px !default;
-$button-big-padding-bottom: 8px !default;
-$button-big-padding-left: 16px !default;
+$button-big-padding-top: .5rem !default;
+$button-big-padding-right: 1rem !default;
+$button-big-padding-bottom: .5rem !default;
+$button-big-padding-left: 1rem !default;
 $button-big-padding: $button-big-padding-top $button-big-padding-right $button-big-padding-bottom $button-big-padding-left !default;
 // = /big ==
 // === /padding ========
+// === margin ===
+$buttons-margin-between: 0.5rem !default;
+// == /margin ===
+$btn-font-size: 1rem;
+$btn-darken-percentage: 5% !default;
+$btn-lighten-percentage: 10% !default;
+$button-border-radius: 4px !default;
+$button-border-style: solid !default;
+$button-border-width: 1px !default;
+
+$link-color: $color-primary !default;
+$link-color-hover: darken($color-primary, $btn-darken-percentage) !default;
+$link-color-disabled: lighten($color-primary, $btn-lighten-percentage) !default;
+
 // ======= /buttons ========
 
+//Input variables
+$input-line-height: 1.5;
+$input-font: system-ui !default;
+$input-font-weight: 400 !default;
+$input-padding-top: .375rem !default;
+$input-padding-right: .75rem !default;
+$input-padding-bottom: .375rem !default;
+$input-padding-left: .75rem !default;
+$input-height: calc(2.25rem + 2px - #{$input-padding-top} - #{$input-padding-bottom}) !default;
+$input-padding: $input-padding-top $input-padding-right $input-padding-bottom $input-padding-left !default;
+$input-focus-box-shadow: inset 0 1px 1px rgba(0 ,0, 0, .075), 0 0 8px rgba(102, 175, 233, .6) !default;
+$input-invalid-focus-box-shadow: inset 0 1px 1px rgba(247, 235, 235, 0.075), 0 0 8px rgba(255, 47, 0, 0.6) !default;
+$input-border-width: 1px !default;
+$input-border-radius: 4px !default;
+$input-border-color: $color-grey !default;
+$input-border: $input-border-width solid $input-border-color !default;
+$input-border-focus-color: $color-primary !default;
+$input-border-invalid-color: $color-danger !default;
+// =====================
+
+// Select variables
+$options-list-max-height: 250px !default;
+$select-list-max-height: $options-list-max-height !default;
+$select-height: calc(2.25rem + 2px) !default;
+$select-background-color: #fff !default;
+$options-list-background-color: #fff !default;
+$options-list-border-color: #bebebe !default;
+$options-border-width: 1px !default;
+$options-list-border-top-left-radius: 4px !default;
+$options-list-border-top-right-radius: 4px !default;
+$options-list-border-bottom-left-radius: 4px !default;
+$options-list-border-bottom-right-radius: 4px !default;
+$option-padding: 5px 10px !default;
+$option-color: $color-black !default;
+$option-border-bottom: 1px solid $color-grey !default;
+$option-focused-color: #fff !default;
+$option-focused-bg: $color-primary !default;
+$option-selected-color: $color-black !default;
+$option-selected-bg: $color-light !default;
+$dropdown-z-index: 1 !default;
+// =====================
+
+// ======== Tooltip ========
+$tooltip-border-radius: 4px !default;
+$tooltip-z-index: 1 !default;
+$tooltip-padding: 5px !default;
+$tooltip-caret-botder: 5px !default;
+$diractions: ('top', 'right', 'bottom', 'left');
+// ======= /Tooltip ========
+
+// ======== Table ========
+$table-font-size: 1rem !default;
+$table-th-border-top: 1px solid $color-grey !default;
+$table-th-border-right: none !default;
+$table-th-border-bottom: 2px solid $color-grey !default;
+$table-th-border-left: none !default;
+$table-cell-padding: .75rem !default;
+$table-text-color: $color-black !default;
+$table-td-border-top: 1px solid $color-grey !default;
+$table-td-border-right: none !default;
+$table-td-border-bottom: none !default;
+$table-td-border-left: none !default;
+$table-th-text-align: left !default;
+$table-td-text-align: left !default;
+// ======= /Table ========
+
+// ======== Dialog ========
+$dialog-header-border-bottom: 1px solid $color-grey !default;
+$dialog-footer-border-top: 1px solid $color-grey !default;
+$dialog-header-background: #fff !default;
+$dialog-body-background: #fff !default;
+$dialog-footer-background: #fff !default;
+$dialog-border-radius: 4px !default;
+// ======= /Dialog ========
+
+// ======== Card ========
+$card-title-font-size: 1.4rem !default;
+$card-header-background-color: #fff !default;
+$card-header-text-color: $color-dark !default;
+$card-body-background-color: #fff !default;
+$card-body-text-color: $color-dark !default;
+$card-header-padding: 5px 10px !default;
+$card-body-padding: 10px !default;
+// === Border ===
+$card-border-radius: 4px !default;
+$card-border-style: solid !default;
+$card-border-width: 1px !default;
+$card-border-color: $color-secondary !default;
+$card-border: $card-border-width $card-border-style $card-border-color !default;
+$card-header-bottom-border: $card-border-width $card-border-style $card-border-color !default;
+// ======= /Card ========
+
+// ======== Badge ========
+$badge-padding-vertical: .25rem !default;
+$badge-padding-horizontal: .4rem !default;
+$badge-pill-padding-horizontal: calc(#{$badge-padding-horizontal} * 1.5) !default;
+$badge-border-radius: .25rem !default;
+$badge-pill-border-radius: 10rem !default;
+$badge-font-size: 75% !default;
+// ======= /Badge ========
+
 // screen width
-$mobile-screen: 690px;
-$tablet-screen: 995px;
-$desktop-screen: 1440px;
+$mobile-screen: 690px !default;
+$tablet-screen: 995px !default;
+$desktop-screen: 1440px !default;
 
 // media queries
 $screen: "only screen";

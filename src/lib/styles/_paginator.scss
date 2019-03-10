@@ -1,0 +1,75 @@
+@import './variables';
+$paginator-button-padding: $button-medium-padding !default;
+$paginator-button-font-size: 1rem !default;
+$paginator-button-font-weight: 400 !default;
+$paginator-button-color: $color-primary !default;
+$paginator-button-color-hover: darken($color-primary, 5%) !default;
+$paginator-button-background-color: #fff !default;
+$paginator-button-background-color-hover: $color-grey !default;
+$paginator-button-current-color: #fff !default;
+$paginator-button-current-background-color: darken($color-primary, 5%) !default;
+$paginator-button-disabled-color: $color-grey !default;
+$paginator-button-disabled-background-color: #fff !default;
+$paginator-page-setter-padding: .25rem !default;
+$paginator-page-setter-width: 2rem !default;
+$paginator-page-setter-border-radius: $button-border-radius !default;
+
+.wrc-paginator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  &__page-button {
+    padding: $paginator-button-padding;
+    font-size: $paginator-button-font-size;
+    font-weight: $paginator-button-font-weight;
+    color: $paginator-button-color;
+    background-color: $paginator-button-background-color;
+    &:hover {
+      cursor: pointer;
+      color: $paginator-button-color-hover;
+      background-color: $paginator-button-background-color-hover;
+    }
+    &--current {
+      &,
+      &:hover {
+        cursor: default;
+        color: $paginator-button-current-color;
+        background-color: $paginator-button-current-background-color;
+      }
+    }
+
+    &--disabled {
+      &,
+      &:hover {
+        cursor: default;
+        color: $paginator-button-disabled-color;
+        background-color: $paginator-button-disabled-background-color;
+      }
+    }
+  }
+  &__page-size-setter {
+    padding: $paginator-page-setter-padding;
+    border-radius: $paginator-page-setter-border-radius;
+    width: $paginator-page-setter-width;
+    height: inherit;
+    line-height: inherit;
+  }
+
+  &__page-size-setter-container {
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+
+  &__page-size-label {
+    margin-left: 5px;
+  }
+  &__page-info {
+    text-align: left;
+  }
+}
