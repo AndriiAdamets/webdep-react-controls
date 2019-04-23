@@ -12,7 +12,7 @@ const Cell = (props, ref) => {
     content = item[accessor];
   }
   return (
-    <td className={classnames('wrc-table__cell', className)} ref={ref}>
+    <td className={classnames('wrc-table__cell', className)} style={style} ref={ref}>
       {content}
     </td>
   )
