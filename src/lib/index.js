@@ -9,12 +9,14 @@ import Dialog from './components/Dialog';
 import Paginator from './components/Paginator';
 import DropdownButton from './components/DropdownButton';
 import Badge from './components/Badge';
+import InputWithTimeout from './components/InputWithTimeout';
 export {
   Button,
   Card,
   Tooltip,
   Checkbox,
   Input,
+  InputWithTimeout,
   Table,
   Dialog,
   Select,
