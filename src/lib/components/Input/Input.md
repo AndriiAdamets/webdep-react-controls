@@ -3,5 +3,5 @@
   <br />
   <div><Input placeholder="Invalid input" invalid /></div>
   <br />
-  <div><Input placeholder="Invalid input" formControl /></div>
+  <div><Input placeholder="Invalid input" /></div>
 ```
