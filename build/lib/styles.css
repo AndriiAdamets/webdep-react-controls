@@ -160,7 +160,7 @@ html, body {
     white-space: pre-wrap;
     border-radius: 4px;
     padding: 5px;
-    z-index: 1; }
+    z-index: 12; }
     .wrc-tooltip__body--top {
       transform: translate(-50%, -100%);
       margin-top: calc(-2 * 5px); }
@@ -369,7 +369,7 @@ html, body {
 
 .wrc-select__options {
   position: absolute;
-  z-index: 1;
+  z-index: 11;
   transform: translateX(-50%);
   background-color: #fff;
   border-top-left-radius: 4px;
@@ -471,7 +471,7 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1001;
+  z-index: 10;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: flex-start;
@@ -584,7 +584,7 @@ html, body {
 
 .wrc-dropdown-button__options {
   position: absolute;
-  z-index: 1;
+  z-index: 11;
   transform: translateX(-50%);
   background-color: #fff;
   border-top-left-radius: 4px;
