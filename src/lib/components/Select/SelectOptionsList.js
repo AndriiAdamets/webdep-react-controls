@@ -60,8 +60,10 @@ export default class SelectOptionsList extends OptionsList {
       e.preventDefault();
       onSelect(this.displayedOptions[focusedIndex][valueAccessor]);
     }else if(e.key === 'ArrowDown') {
+      e.preventDefault();
       this.setState({focusedIndex: Math.min(focusedIndex + 1, this.displayedOptions.length - 1)});
     } else if(e.key === 'ArrowUp') {
+      e.preventDefault();
       this.setState({focusedIndex: Math.max(focusedIndex - 1, 0)});
     } else if (closeSelectKeys.indexOf(e.key) > -1) {
       onClose(true);
@@ -96,7 +98,6 @@ export default class SelectOptionsList extends OptionsList {
   render() {
     const { enableSearch, optionNameFn, className, valueAccessor, nameAccessor, value, onSelect, } = this.props;
     const { focusedIndex, style } = this.state;
-    console.log({style});
     return createPortal((
       <div style={style}  ref={this.container}
         className={classnames('options wrc-select__options', className)}>

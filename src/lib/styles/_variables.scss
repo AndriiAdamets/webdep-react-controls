@@ -77,6 +77,10 @@ $link-color-disabled: lighten($color-primary, $btn-lighten-percentage) !default;
 
 // ======= /buttons ========
 
+// ======== Dialog ========
+$dialog-z-index: 10 !default;
+// ======= /Dialog ========
+
 //Input variables
 $input-line-height: 1.5;
 $input-font: system-ui !default;
@@ -116,12 +120,12 @@ $option-focused-color: #fff !default;
 $option-focused-bg: $color-primary !default;
 $option-selected-color: $color-black !default;
 $option-selected-bg: $color-light !default;
-$dropdown-z-index: 1 !default;
+$dropdown-z-index: $dialog-z-index + 1 !default;
 // =====================
 
 // ======== Tooltip ========
 $tooltip-border-radius: 4px !default;
-$tooltip-z-index: 1 !default;
+$tooltip-z-index: $dropdown-z-index + 1 !default;
 $tooltip-padding: 5px !default;
 $tooltip-caret-botder: 5px !default;
 $diractions: ('top', 'right', 'bottom', 'left');
@@ -182,6 +186,7 @@ $badge-font-size: 75% !default;
 $mobile-screen: 690px !default;
 $tablet-screen: 995px !default;
 $desktop-screen: 1440px !default;
+
 
 // media queries
 $screen: "only screen";
