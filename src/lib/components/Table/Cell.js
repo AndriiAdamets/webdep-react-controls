@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import classnames from 'classnames';
 const Cell = (props, ref) => {
   const { column, item, className, children } = props;
+  debugger;
   const { componentFn, accessor, style } = column;
   let content;
   if (!!children) {

@@ -10,6 +10,8 @@ import Paginator from './components/Paginator';
 import DropdownButton from './components/DropdownButton';
 import Badge from './components/Badge';
 import InputWithTimeout from './components/InputWithTimeout';
+import { WRCThemeProvider } from './components/Theme';
+
 export {
   Button,
   Card,
@@ -23,4 +25,5 @@ export {
   Paginator,
   DropdownButton,
   Badge,
+  WRCThemeProvider,
 };

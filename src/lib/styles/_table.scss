@@ -24,4 +24,12 @@
       border-left: $table-th-border-left;
     }
   }
+
+  &__sort-indicator {
+    margin-left: $table-sort-button-margin-left;
+    color: $table-sort-button-color;
+    &:hover {
+      color:$table-sort-button-hover-color;
+    }
+  }
 }

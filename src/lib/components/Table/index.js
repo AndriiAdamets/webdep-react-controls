@@ -8,7 +8,7 @@ const Table = (props) => {
   return (
     <div className="wrc-table">
       <table className="wrc-table__table wrc-table">
-        <Header config={props.config} />
+        <Header {...props} />
         <Body {...props} />
       </table>
     </div>
@@ -44,6 +44,9 @@ Table.propTypes = {
   }),
   /** Table data */
   data:PropTypes.arrayOf(PropTypes.object),
+  // ascButtonContent: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  // descButtonContent: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  // noDirectionButtonContent: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
 };
 
 Table.defaultProps = {
@@ -54,7 +57,7 @@ Table.defaultProps = {
     perPage: PAGINATION_PAGE_SIZES[0],
     total: 0,
     pageSizes: PAGINATION_PAGE_SIZES,
-  }
+  },
 }
 
 export default Table;
