@@ -465,6 +465,12 @@ html, body {
     border-bottom: 2px solid #ced4da;
     border-left: none; }
 
+.wrc-table__sort-indicator {
+  margin-left: 5px;
+  color: #343a40; }
+  .wrc-table__sort-indicator:hover {
+    color: #212529; }
+
 .wrc-dialog-overlay {
   position: fixed;
   top: 0;
