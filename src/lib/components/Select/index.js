@@ -147,7 +147,10 @@ export default class Select extends Component {
   };
 
   get value() {
-    return this.control.current ? this.control.current.value : this.props.value;
+    if(!!this.control.current) {
+      return this.control.current.value || this.props.value;
+    }
+    return this.props.value;
   };
 
   get triggerContent() {
