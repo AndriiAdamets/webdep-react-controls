@@ -1,4 +1,7 @@
 export default function isChildOf(child, parent) {
+  if(!child) {
+    return false;
+  }
   if(child.parentNode === parent) {
     return true;
   }
