@@ -96,7 +96,7 @@ export default class SelectOptionsList extends OptionsList {
   }
 
   render() {
-    const { enableSearch, optionNameFn, className, valueAccessor, nameAccessor, value, onSelect, } = this.props;
+    const { enableSearch, optionNameFn, className, valueAccessor, nameAccessor, onSelect, isSelectedFn } = this.props;
     const { focusedIndex, style } = this.state;
     return createPortal((
       <div style={style}  ref={this.container}
@@ -107,7 +107,7 @@ export default class SelectOptionsList extends OptionsList {
         <ul className="options__list wrc-select__options-list" ref={this.list}>
           {this.displayedOptions.map((option, index) => (
             <SelectOption key={option[valueAccessor]} value={option[valueAccessor]}
-              focused={index === focusedIndex} selected={option[valueAccessor] == value}
+              focused={index === focusedIndex} selected={isSelectedFn(option[valueAccessor])}
               onFocus={this.handleOptionFocus} onSelect={onSelect}>
               {optionNameFn ? optionNameFn(option) : option[nameAccessor]}
             </SelectOption>

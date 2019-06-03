@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 
 export default class SelectOption extends Component {
-  handleClick = () => this.props.onSelect(this.props.value);
+  handleClick = (e) => this.props.onSelect(this.props.value);
   handleMouseEnter = () => this.props.onFocus(this.props.value);
 
   render() {

@@ -7,6 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
 
@@ -22,6 +23,15 @@
 
   &__option {
     @include dropdown-option();
+    padding-left: 20px;
+
+    &--selected {
+      &:before {
+        content: '✓';
+        position: absolute;
+        left: 5px;
+      }
+    }
   }
 
   &__control {
@@ -41,5 +51,19 @@
 
   &__value {
     @include ellipsis();
+  }
+
+  &__multiple-values {
+    display: flex;
+  }
+
+  &__multiselect-value {
+    border: 1px solid $color-dark;
+    padding: 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
   }
 }
