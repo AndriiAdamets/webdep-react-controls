@@ -1,0 +1,5 @@
+@import './mixins';
+
+.wrc-textarea {
+  @include like-input();
+}

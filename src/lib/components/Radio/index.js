@@ -1,34 +1,34 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-const CheckboxIndicator = ({ checked }) => (
+const RadioIndicator = ({ checked }) => (
   <div className={classnames(
-    'wrc-checkbox__indicator', {'wrc-checkbox__indicator--checked': !!checked}
+    'wrc-radio__indicator', {'wrc-radio__indicator--checked': !!checked}
     )}>
   </div>
 );
 
 /**
- * Checkbox is component for render input with 'checkbox' type
+ * Radio is component for render input with 'radio' type
  */
-const Checkbox = forwardRef((props, ref) => {
+const Radio = forwardRef((props, ref) => {
   const { label, indicator, ...inputProps } = props;
-  const Indicator = indicator || CheckboxIndicator;
+  const Indicator = indicator || RadioIndicator;
 
   return (
-    <label className="wrc-checkbox">
+    <label className="wrc-radio">
       <Indicator {...props} />
-      <input {...inputProps} type="checkbox" role="checkbox"
-        className="wrc-checkbox"
+      <input {...inputProps} type="radio" role="radio"
+        className="wrc-radio"
         ref={ref} />
-      <div className="wrc-checkbox__label">
+      <div className="wrc-radio__label">
         {label}
       </div>
     </label>
   );
-})
+});
 
-Checkbox.propTypes = {
+Radio.propTypes = {
   /** Handler for change input value */
   onChange: PropTypes.func,
   /** Is input checked or not */
@@ -39,4 +39,4 @@ Checkbox.propTypes = {
   label: PropTypes.string,
 }
 
-export default Checkbox;
+export default Radio;

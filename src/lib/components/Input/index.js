@@ -1,11 +1,16 @@
 import React, { forwardRef } from 'react';
 import classnames from 'classnames';
-const Input = ({ className, invalid, ...inputProps }, ref) => (
+import PropTypes from 'prop-types';
+const Input = forwardRef(({ className, invalid, ...inputProps }, ref) => (
   <input {...inputProps} className={classnames('wrc-input', className, {
     'wrc-input--invalid': !!invalid,
     [`${className}--invalid`]: !!className && !!invalid,
   })} ref={ref} />
-);
+));
+
+Input.propTypes = {
+  invalid: PropTypes.bool,
+}
 
 
-export default forwardRef(Input);
+export default Input;
