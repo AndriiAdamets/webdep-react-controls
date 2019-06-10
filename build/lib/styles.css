@@ -313,6 +313,13 @@ html, body {
     margin-left: 0.2rem;
     display: inline-block; }
 
+.wrc-radio {
+  display: inline-flex;
+  align-items: center; }
+  .wrc-radio__label {
+    margin-left: 0.2rem;
+    display: inline-block; }
+
 .wrc-input {
   font-family: system-ui;
   font-weight: 400;
@@ -696,3 +703,29 @@ html, body {
     border-right: 5px solid transparent; }
   .wrc-caret--light:before {
     border-top: 5px solid #fff; }
+
+.wrc-textarea {
+  font-family: system-ui;
+  font-weight: 400;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  min-height: calc(2.25rem + 2px - 0.375rem - 0.375rem);
+  display: block;
+  line-height: 1.5;
+  font-size: 1rem;
+  padding: 0.375rem 0.75rem 0.375rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  outline: 0;
+  width: calc(100% - 0.75rem - 0.75rem - 2* 1px); }
+  .wrc-textarea:focus {
+    border-color: #007bff;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
+  .wrc-textarea::placeholder {
+    color: #ced4da; }
+  .wrc-textarea--invalid {
+    border-color: #dc3545; }
+    .wrc-textarea--invalid:focus {
+      border-color: #dc3545;
+      box-shadow: inset 0 1px 1px rgba(247, 235, 235, 0.075), 0 0 8px rgba(255, 47, 0, 0.6); }

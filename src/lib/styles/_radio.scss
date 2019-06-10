@@ -1,0 +1,10 @@
+@import './variables';
+
+.wrc-radio {
+  display: inline-flex;
+  align-items: center;
+  &__label {
+    margin-left: 0.2rem;
+    display: inline-block;
+  }
+}
