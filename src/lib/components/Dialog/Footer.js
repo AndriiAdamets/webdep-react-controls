@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = ({ children }) => (
-  <div className="dialog__footer">
+  <div className="wrc-dialog__footer">
     {children}
   </div>
 );
