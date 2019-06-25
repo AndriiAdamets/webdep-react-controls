@@ -1,6 +1,6 @@
 {
   "name": "webdep-react-controls",
-  "version": "0.12.3",
+  "version": "0.12.4",
   "description": "React form controls wrappers components",
   "main": "./build/lib/index.js",
   "repository": "git@github.com:AndriiAdamets/react-controls.git",
