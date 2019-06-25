@@ -468,33 +468,31 @@ html, body {
   .wrc-select__multiselect-value:not(:last-child) {
     margin-right: 10px; }
 
-.wrc-table__table {
+.wrc-table {
   font-size: 1rem;
   min-width: 100%;
   background-color: transparent;
   color: #212529;
   border-collapse: collapse; }
-
-.wrc-table__cell {
-  padding: 0.75rem;
-  border-top: 1px solid #ced4da;
-  border-right: none;
-  border-bottom: none;
-  border-left: none;
-  text-align: left; }
-  .wrc-table__cell--header {
-    vertical-align: bottom;
-    text-align: left;
+  .wrc-table__cell {
+    padding: 0.75rem;
     border-top: 1px solid #ced4da;
     border-right: none;
-    border-bottom: 2px solid #ced4da;
-    border-left: none; }
-
-.wrc-table__sort-indicator {
-  margin-left: 5px;
-  color: #343a40; }
-  .wrc-table__sort-indicator:hover {
-    color: #212529; }
+    border-bottom: none;
+    border-left: none;
+    text-align: left; }
+    .wrc-table__cell--header {
+      vertical-align: bottom;
+      text-align: left;
+      border-top: 1px solid #ced4da;
+      border-right: none;
+      border-bottom: 2px solid #ced4da;
+      border-left: none; }
+  .wrc-table__sort-indicator {
+    margin-left: 5px;
+    color: #343a40; }
+    .wrc-table__sort-indicator:hover {
+      color: #212529; }
 
 .wrc-dialog-overlay {
   position: fixed;

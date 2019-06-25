@@ -1,13 +1,12 @@
 @import './variables';
 
 .wrc-table {
-  &__table {
-    font-size: $table-font-size;
-    min-width: 100%;
-    background-color: transparent;
-    color: $table-text-color;
-    border-collapse: collapse;
-  }
+  font-size: $table-font-size;
+  min-width: 100%;
+  background-color: transparent;
+  color: $table-text-color;
+  border-collapse: collapse;
+
   &__cell {
     padding: $table-cell-padding;
     border-top: $table-td-border-top;

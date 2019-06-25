@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-const CardHeader = (props) => (
-  <div {...props} />
-);
+import classnames from 'classnames';
+import { WRCThemeContext } from '../Theme';
+
+const CardHeader = (props) => {
+  const context = useContext(WRCThemeContext).theme.card || {};
+  const className = classnames(context.headerClassName, props.className);
+  return (<div {...props} className={className} />);
+};
 
 CardHeader.propTypes = {
   /* Card header class */
@@ -11,8 +16,5 @@ CardHeader.propTypes = {
   children: PropTypes.any,
 };
 
-CardHeader.defaultProps = {
-  className: 'wrc-card__header',
-};
 
 export default CardHeader;

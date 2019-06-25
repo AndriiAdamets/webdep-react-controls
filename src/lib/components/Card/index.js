@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-
+import classnames from 'classnames';
+import { WRCThemeContext } from '../Theme';
 import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
 import CardBody from './CardBody';
 
-const Card = (props) => (
-  <section {...props} />
-);
+const Card = ({ className, ...props }) => {
+  const context = useContext(WRCThemeContext).theme.card || {};
+  const divClassName = classnames(context.className, className);
+  return (
+    <section {...props} className={divClassName} />
+  );
+};
 
 Card.propTypes = {
   /** card class */
   className: PropTypes.string,
-}
-
-Card.defaultProps = {
-  className: 'wrc-card',
 }
 
 Card.Header = CardHeader;

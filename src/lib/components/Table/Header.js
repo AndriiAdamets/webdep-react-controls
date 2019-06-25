@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import SortButton from './SortButton';
-const TableHeader = (props) => (
-  <thead className="wrc-table__header">
+
+const TableHeader = ({ theadClassName, thClassName, ...props}) => (
+  <thead className={theadClassName}>
     <tr>
       {props.config.map((column) => (
-        <th className="wrc-table__cell wrc-table__cell--header" key={column.accessor || column.title}>
+        <th className={thClassName} key={column.accessor || column.title}>
           {column.title}
           {!!column.sortable && (<SortButton {...props} column={column} />)}
         </th>

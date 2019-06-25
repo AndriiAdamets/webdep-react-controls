@@ -3,6 +3,7 @@
     ascButtonContent: '↑',
     descButtonContent: '↓',
     noDirectionButtonContent: '↕',
+    tableClassName: 'table themed-table'
     }
   }}>
   <Table

@@ -1,21 +1,48 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { PAGINATION_MAX_PAGES, PAGINATION_PAGE_SIZES } from '../../constants/pagination';
+import { WRCThemeContext } from '../Theme';
 
 import Header from './Header';
 import Body from './Body';
+
+const tableClassNames = [ 'tableClassName', 'theadClassName', 'tbodyClassName', 'thClassName', 'tdClassName', 'trClassName',];
+
+function getClassName(context, props, key) {
+  return props[key] !== undefined ? props[key] : context[key]
+}
+
 const Table = (props) => {
+
+  const context = useContext(WRCThemeContext).theme.table || {};
+  const classNames = tableClassNames.reduce((res, key) => {
+    return {...res, [key]: getClassName(context, props, key)}
+  }, {})
+
   return (
-    <div className="wrc-table">
-      <table className="wrc-table__table wrc-table">
-        <Header {...props} />
-        <Body {...props} />
+    <div>
+      <table className={classNames.tableClassName}>
+        <Header {...props} {...classNames} />
+        <Body {...props} {...classNames} />
       </table>
     </div>
   );
 };
 
 Table.propTypes = {
+  /** table tag className */
+  tableClassName: PropTypes.string,
+  /** thead tag className */
+  theadClassName: PropTypes.string,
+  /** tbody tag className */
+  tbodyClassName: PropTypes.string,
+  /** th tag className */
+  thClassName: PropTypes.string,
+  /** td tag className */
+  tdClassName: PropTypes.string,
+  /** tr tag className */
+  trClassName: PropTypes.string,
+
   /** Table columns description */
   config: PropTypes.arrayOf(PropTypes.shape({
     /** Key of item object, with should display in cell */
@@ -44,9 +71,6 @@ Table.propTypes = {
   }),
   /** Table data */
   data:PropTypes.arrayOf(PropTypes.object),
-  // ascButtonContent: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
-  // descButtonContent: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
-  // noDirectionButtonContent: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
 };
 
 Table.defaultProps = {

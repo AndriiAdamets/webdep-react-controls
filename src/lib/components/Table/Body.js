@@ -1,8 +1,8 @@
 import React from 'react';
 import Row from './Row';
 
-const Body = ({data, ...otherProps}) => (
-  <tbody className="wrc-table__body">
+const Body = ({tbodyClassName, data, ...otherProps}) => (
+  <tbody className={tbodyClassName}>
     {data.map((item, index) => (
       <Row item={item} key={index} {...otherProps} />
     ))}

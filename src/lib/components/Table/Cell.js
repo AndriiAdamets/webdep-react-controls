@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import classnames from 'classnames';
 const Cell = (props, ref) => {
-  const { column, item, className, children } = props;
+  const { column, item, className, children, tdClassName } = props;
   const { componentFn, accessor, style } = column;
   let content;
   if (!!children) {
@@ -12,7 +12,7 @@ const Cell = (props, ref) => {
     content = item[accessor];
   }
   return (
-    <td className={classnames('wrc-table__cell', className)} style={style} ref={ref}>
+    <td className={classnames(tdClassName, className)} style={style} ref={ref}>
       {content}
     </td>
   )

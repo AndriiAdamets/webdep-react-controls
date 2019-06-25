@@ -7,7 +7,24 @@ export const themes = {
       ascButtonContent: '↑',
       descButtonContent: '↓',
       noDirectionButtonContent: '↕',
+      tableClassName: 'wrc-table',
+      theadClassName: 'wrc-table__header',
+      tbodyClassName: 'wrc-table__body',
+      thClassName: 'wrc-table__cell wrc-table__cell--header',
+      tdClassName: 'wrc-table__cell',
+      trClassName: 'wrc-table__row',
     },
+    input: {
+      inputClassName: 'wrc-input',
+    },
+    button: {
+      buttonClassName: 'wrc-button',
+    },
+    card: {
+      className: 'wrc-card',
+      headerClassName: 'wrc-card__header',
+      bodyClassName: 'wrc-card__body',
+    }
   },
 };
 

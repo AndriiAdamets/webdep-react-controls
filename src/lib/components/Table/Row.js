@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import classnames from 'classnames';
 import Cell from './Cell';
-// import { config } from 'rx';
-export default class Row extends Component {
-  handleClick = (e) => {
-    this.props.onClick(this.props.item);
-  }
-  render() {
-    const { item, config, onClick, className, rowClassFn } = this.props;
-    const rowAddonClass = rowClassFn ? rowClassFn(item) : null;
-    return (
-      <tr className={classnames('wrc-table__row', className, rowAddonClass)}
-        onClick={!!onClick ? this.props.handleClick : undefined}>
-        {config.map(colConfig => (
-          <Cell item={item} column={colConfig} key={colConfig.accessor || colConfig.title} />
-        ))}
-      </tr>
-    )
-  }
+
+const Row = ({item, config, onClick, className, rowClassFn, trClassName, tdClassName}) => {
+  const rowAddonClass = rowClassFn ? rowClassFn(item) : null;
+  const handleClick = onClick ? (e) => { onClick(this.props.item); } : undefined;
+  return (
+    <tr className={classnames(trClassName, className, rowAddonClass)}
+      onClick={handleClick}>
+      {config.map(colConfig => (
+        <Cell item={item} column={colConfig} key={colConfig.accessor || colConfig.title} tdClassName={tdClassName} />
+      ))}
+    </tr>
+  );
 }
+
+export default Row;
