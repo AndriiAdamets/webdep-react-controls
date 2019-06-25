@@ -3,6 +3,7 @@ import React, { Component, createContext } from 'react';
 // TODO: Create default themes
 export const themes = {
   default: {
+    useBEM: true,
     table: {
       ascButtonContent: '↑',
       descButtonContent: '↓',
@@ -19,6 +20,12 @@ export const themes = {
     },
     button: {
       buttonClassName: 'wrc-button',
+      sizeLabels: {
+        small: 'small',
+        medium: 'medium',
+        large: 'large',
+      },
+
     },
     card: {
       className: 'wrc-card',

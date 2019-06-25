@@ -35,7 +35,7 @@ Button sizes:
 <div>
   <Button size="small">Small button</Button>
   <Button>Default button</Button>
-  <Button size="big">Big button</Button>
+  <Button size="large">Big button</Button>
 </div>
 ```
 
