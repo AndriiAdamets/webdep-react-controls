@@ -5,7 +5,7 @@ import { WRCThemeContext } from '../Theme';
 
 const CardBody = (props) => {
   const context = useContext(WRCThemeContext).theme.card || {};
-  const className = classnames(context.headerClassName, props.className);
+  const className = classnames(context.bodyClassName, props.className);
   return ( <div {...props} className={className} />)};
 
 CardBody.propTypes = {
