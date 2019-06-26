@@ -18,6 +18,9 @@ export const themes = {
     input: {
       inputClassName: 'wrc-input',
     },
+    textarea: {
+      inputClassName: 'wrc-textarea',
+    },
     button: {
       buttonClassName: 'wrc-button',
       sizeLabels: {
