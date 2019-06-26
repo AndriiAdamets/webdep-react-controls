@@ -7,7 +7,7 @@ const Textarea = forwardRef(({ className, invalid, ...inputProps }, ref) => {
   const { inputClassName } = (useContext(WRCThemeContext).theme.textarea || {});
 
   return (
-    <textarea {...inputProps} className={classnames('inputClassName', className, {
+    <textarea {...inputProps} className={classnames(inputClassName, className, {
       [`${inputClassName}--invalid`]: !!invalid,
       [`${className}--invalid`]: !!className && !!invalid,
     })} ref={ref} />
