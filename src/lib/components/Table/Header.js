@@ -8,8 +8,8 @@ const TableHeader = ({ theadClassName, thClassName, ...props}) => {
     <thead className={theadClassName}>
     {!!hasFilters && (
       <tr>
-        {props.config.map(col => (
-          <td key={column.accessor || column.title}>{col.filterComponentFn ? col.filterComponentFn(col) : null}</td>
+        {props.config.map(column => (
+          <td key={column.accessor || column.title}>{column.filterComponentFn ? column.filterComponentFn(column) : null}</td>
         ))}
       </tr>
     )}
