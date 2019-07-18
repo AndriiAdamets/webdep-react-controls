@@ -6,7 +6,6 @@ import { WRCThemeContext } from '../Theme';
 function getButtonClassNames(props, defaultClassName = 'wrc-button', theme) {
   const useBEM = theme ? theme.useBEM : false;
   const btnSizes = !!theme && !!theme.button && theme.button.sizeLabels ? theme.button.sizeLabels : {};
-  console.log({btnSizes});
   const size = btnSizes[props.size] || props.size;
   let advancedClassNames;
   if(!!useBEM) {

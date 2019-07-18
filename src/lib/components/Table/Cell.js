@@ -11,6 +11,7 @@ const Cell = (props, ref) => {
   } else {
     content = item[accessor];
   }
+  console.log({style});
   return (
     <td className={classnames(tdClassName, className)} style={style} ref={ref}>
       {content}
