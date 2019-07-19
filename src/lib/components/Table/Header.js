@@ -15,7 +15,7 @@ const TableHeader = ({ theadClassName, thClassName, ...props}) => {
     )}
       <tr>
         {props.config.map((column) => (
-          <th className={thClassName} key={column.accessor || column.title}>
+          <th className={thClassName} style={column.style} key={column.accessor || column.title}>
             {column.title}
             {!!column.sortable && (<SortButton {...props} column={column} />)}
           </th>
