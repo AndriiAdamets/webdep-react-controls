@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Caret from '../Caret';
 import SelectOptionsList from './SelectOptionsList';
-import MultiselectValue from './multiselectValue';
+import MultiselectValue from './MultiselectValue';
 import isChildOf from '../../helpers/isChildOf';
 
 const openSelectKeys = [' ', 'ArrowUp', 'ArrowDown'];
@@ -37,11 +37,11 @@ export default class Select extends Component {
     multiple: false,
     options: [],
     optionsListClassName: 'wrc-select__options-list',
-    searchFn: function(search, option, props) {
+    searchFn: function (search, option, props) {
       const regexPart = search.toLowerCase();
       const reg = RegExp(`(^${regexPart})|\\s(${regexPart})`);
       const { optionNameFn, nameAccessor } = props;
-      if(!!optionNameFn) {
+      if (!!optionNameFn) {
         return reg.test(optionNameFn(option).toLowerCase());
       }
       return reg.test(option[nameAccessor].toLowerCase());
@@ -70,7 +70,7 @@ export default class Select extends Component {
   };
 
   isValueSelected = (value) => {
-    if(this.props.multiple) {
+    if (this.props.multiple) {
       return this.value.indexOf(value.toString()) > -1;
     }
     return this.value == value;
@@ -85,25 +85,25 @@ export default class Select extends Component {
   close = (closedByKey) => {
     document.removeEventListener('click', this.handleDocumentClick);
     this.setState({ isOptionsVisible: false });
-    if(closedByKey) {
+    if (closedByKey) {
       this.trigger.current.focus();
     }
   };
 
   handleDocumentClick = (e) => {
-    if(!isChildOf(e.target, this.optionsList.current.container.current)) {
+    if (!isChildOf(e.target, this.optionsList.current.container.current)) {
       this.close();
     }
   }
 
   handleSelectOption = (value) => {
-    let event = new Event('select', { bubbles: true});
+    let event = new Event('select', { bubbles: true });
     event.simulated = true;
-    if(this.props.multiple) {
+    if (this.props.multiple) {
       const index = this.value.findIndex(v => v == value);
       let newValue;
       // Remove selected value from multiselect value if it already selected
-      if(index > -1) {
+      if (index > -1) {
         newValue = [].concat(
           this.value.slice(0, index),
           this.value.slice(index + 1)
@@ -121,13 +121,13 @@ export default class Select extends Component {
       this.trigger.current.focus();
     }
     this.control.current.dispatchEvent(event);
-    if(!!this.props.onChange) {
+    if (!!this.props.onChange) {
       this.props.onChange(event, this.value);
     }
   };
 
   handleKeyDown = (e) => {
-    if(scrollButtons.indexOf(e.key) > -1) {
+    if (scrollButtons.indexOf(e.key) > -1) {
       e.preventDefault();
     }
     if (openSelectKeys.indexOf(e.key) > -1) {
@@ -149,7 +149,7 @@ export default class Select extends Component {
   }
 
   get options() {
-    if(this.isOptionObject) {
+    if (this.isOptionObject) {
       return this.props.options;
     }
     const { nameAccessor, valueAccessor } = this.props;
@@ -163,24 +163,24 @@ export default class Select extends Component {
 
   get selectedOptionName() {
     const { nameAccessor, valueAccessor, options, optionNameFn } = this.props;
-    if(!this.isOptionObject) {
+    if (!this.isOptionObject) {
       return this.value || ' ';
     }
     const optionIndex = options.findIndex(option => option[valueAccessor] == this.value);
-    if(optionIndex === -1) {
+    if (optionIndex === -1) {
       return ' ';
     }
-    if(!!optionNameFn) {
+    if (!!optionNameFn) {
       return optionNameFn(options[optionIndex]);
     }
     return options[optionIndex][nameAccessor];
   };
 
   get value() {
-    if(!!this.control.current) {
-      if(this.props.multiple) {
-        return [].filter.call(this.control.current.options, ({selected}) => !!selected)
-          .map(({value}) => value);
+    if (!!this.control.current) {
+      if (this.props.multiple) {
+        return [].filter.call(this.control.current.options, ({ selected }) => !!selected)
+          .map(({ value }) => value);
       }
       return this.control.current.value || this.props.value;
     }
@@ -189,12 +189,12 @@ export default class Select extends Component {
 
   get triggerContent() {
     const { valueAccessor, nameAccessor, multiple, optionNameFn } = this.props;
-    if(this.value === undefined || !(this.value + '').length) {
+    if (this.value === undefined || !(this.value + '').length) {
       return (
         <div className="wrc-select__placeholder">{this.props.placeholder}</div>
       );
     }
-    if(multiple) {
+    if (multiple) {
       return (
         <div className="wrc-select__multiple-values">
           {this.value.map(val => {
@@ -203,9 +203,9 @@ export default class Select extends Component {
               <MultiselectValue option={option} nameAccessor={nameAccessor}
                 optionNameFn={optionNameFn} key={option[valueAccessor]}
                 valueAccessor={valueAccessor} onUnselect={this.handleSelectOption}
-                />
+              />
             );
-            })}
+          })}
         </div>
       );
     }
@@ -223,7 +223,7 @@ export default class Select extends Component {
 
   render() {
     const { nameAccessor, valueAccessor, value, enableSearch, triggerClassName, optionNameFn, searchFn, multiple, } = this.props;
-    const { isOptionsVisible,} = this.state;
+    const { isOptionsVisible, } = this.state;
     return (
       <div className="wrc-select">
         <div className={classnames('wrc-select__trigger', triggerClassName)}
@@ -243,7 +243,7 @@ export default class Select extends Component {
             value={this.value}
             ref={this.optionsList} options={this.options} />
         )}
-        <select className="wrc-select__control" value={value} multiple={multiple} onChange={() =>{}} ref={this.control}>
+        <select className="wrc-select__control" value={value} multiple={multiple} onChange={() => { }} ref={this.control}>
           <option key="empty-item"></option>
           {this.options.map(option => (
             <option key={option[valueAccessor]} value={option[valueAccessor]}>

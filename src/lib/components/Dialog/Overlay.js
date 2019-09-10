@@ -30,11 +30,11 @@ export default class ModalOverlay extends Component {
     if (isOpen) {
       document.body.classList.add('body-with-open-modal');
       document.addEventListener('keydown', this.handleKeydown);
-      document.addEventListener('touchmove', this.handleDisableScrollTablet);
+      // document.addEventListener('touchmove', this.handleDisableScrollTablet);
     } else {
       document.body.classList.remove('body-with-open-modal');
       document.removeEventListener('keydown', this.handleKeydown);
-      document.removeEventListener('touchmove', this.handleDisableScrollTablet);
+      // document.removeEventListener('touchmove', this.handleDisableScrollTablet);
     }
   }
 
