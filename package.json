@@ -44,7 +44,7 @@
     "gulp-util": "^3.0.8",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
-    "node-notifier": "^5.3.0",
+    "node-notifier": "^8.0.1",
     "node-sass": "^4.11.0",
     "react-styleguidist": "^8.0.6",
     "react-test-renderer": "^16.7.0",
